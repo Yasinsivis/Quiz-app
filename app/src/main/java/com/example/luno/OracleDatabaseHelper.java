@@ -1,76 +1,49 @@
 package com.example.luno;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.EditText;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+public class OracleDatabaseHelper {
+     //AsyncTask kullanarak ana iş parçacığını bloke etmeden veri tabanına ulaşıyoruz ve LUNO_USER tablosuna kullanıcıdan aldığımnız verileri ekliyoruz.
+    public static void VeriADD(final Context context, final String username, final String password) {
+        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                try {
+                    // Veritabanı işlemleri
+                    Class.forName("oracle.jdbc.driver.OracleDriver");
+                    Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@//192.168.1.104:1521/XEPDB1", "YASINS", "ys");
+                    String sql = "INSERT INTO LUNO_USER (NAME,PASSWORD) VALUES (?,?)";
+                    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                    preparedStatement.setString(1, username);
+                    preparedStatement.setString(2, password);
+                    int affectedRows = preparedStatement.executeUpdate();
+                    preparedStatement.close();
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
 
-public class OracleDatabaseHelper extends AsyncTask<Void, Void, Connection> {
-
-    private static final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
-    String url = "jdbc:oracle:thin:@//192.168.1.104:1521/XEPDB1";
-    String username = "YASINS";
-    String password = "ys";
-    private ConnectionListener connectionListener;
-
-    public OracleDatabaseHelper(ConnectionListener connectionListener) {
-        this.connectionListener = connectionListener;
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                // İşlem tamamlandıktan sonra yapılacak işlemler buraya yazılır
+            }
+        };
+        task.execute();
     }
-   /*public void insertData(Connection connection, String value1, String value2) {
-        // Veritabanına veri eklemek için SQL sorgusu
-        String sql = "INSERT INTO USER (NAME, PASSWORD) VALUES (?, ?)";
-
-        try (Connection connection = DriverManager.getConnection(url, username, password);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
-            // SQL sorgusunda belirtilen parametrelere verileri atama
-            preparedStatement.setString(1, value1);
-            preparedStatement.setString(2, value2);
-
-            // SQL sorgusunu çalıştırma
-            preparedStatement.executeUpdate();
-
-            System.out.println("Data inserted successfully");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }*/
-
-    @Override
-    protected Connection doInBackground(Void... voids) {
-        Connection connection = null;
-        try {
-            Class.forName(JDBC_DRIVER);
-            connection = DriverManager.getConnection(url, username, password);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-        return connection;
-    }
-
-    @Override
-    protected void onPostExecute(Connection connection) {
-        if (connection != null) {
-            connectionListener.onConnectionSuccess(connection);
-        } else {
-            connectionListener.onConnectionError(new SQLException("Failed to connect to database"));
-        }
-    }
-
-
-
-    public interface ConnectionListener {
-        void onConnectionSuccess(Connection connection);
-
-        void onConnectionError(SQLException e);
-    }
-
-
-
-
 }
+
+
+
+
+
 
 
 
