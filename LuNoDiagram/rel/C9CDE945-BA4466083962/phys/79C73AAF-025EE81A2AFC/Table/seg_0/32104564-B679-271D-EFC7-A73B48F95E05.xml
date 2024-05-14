@@ -1,0 +1,46 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="ENGLISHWORDS" directorySegmentName="seg_0" id="32104564-B679-271D-EFC7-A73B48F95E05">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:38:40 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<schemaObject>4A07ADF4-28FC-C3C0-E0EF-C0ED50CE5456</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>634EBEE5-183A-676D-186E-CD55169FE02F</segment>
+<tableSpace>D5A34C30-81C4-F6B9-7D3A-DDD59562F00B</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="ENGWORD_NAME" id="0B04ECEF-2AA0-553D-0AF3-18789C89C79E">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:38:40 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ENGWORD_REPLY" id="165A38EF-C12A-0DC7-D754-3D111CB458DB">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:38:40 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ENGWORD_ID" id="FFE0D3F8-32DA-1FE5-EE06-1CD5EAE0B139">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:38:40 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<autoIncrementDDL>IDENTITY_CLAUSE</autoIncrementDDL>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="ENGLISHWORDS_PK" id="2A051716-F00B-E1D1-A614-4CE98D285447">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:38:43 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<schemaObject>4A07ADF4-28FC-C3C0-E0EF-C0ED50CE5456</schemaObject>
+<segment>AD4893C8-CB57-8156-DF92-16923E126627</segment>
+<tableSpace>D5A34C30-81C4-F6B9-7D3A-DDD59562F00B</tableSpace>
+<indexSegment>AD4893C8-CB57-8156-DF92-16923E126627</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

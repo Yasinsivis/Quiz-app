@@ -1,0 +1,6 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StorageDesignOraclev12cR2 class="oracle.dbtools.crest.model.design.storage.oracle.v12cr2.StorageDesignOraclev12cR2" name="Oracle Database 12cR2" id="02F03502-6E79-29B9-D618-EB33744C4BC6" siteID="79C73AAF-E1A7-E669-7DF0-025EE81A2AFC" siteName="Oracle Database 12cR2" siteType="14">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:38:39 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+</StorageDesignOraclev12cR2>

@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="9E3913B7-61F5-7071-BC12-04FAB6EBBC40" containerWithKeyObject="65182948-FF1D-4770-934E-F9AEA3DEBFB8" localFKIndex="61117349-D482-7550-833E-40E980EC8EC2" name="POINTS">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>YASINUSER</sourceObjSchema>
+<sourceObjName>POINTS</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:02 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<referredTableLongName>YASINUSER.POINTS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>8BEF415D-E978-C086-9EBD-6F9530290400</referredTableID>
+<keyObject>17EB3503-9DAA-4987-87F9-333BAE5EF642</keyObject>
+<referredKeyID>17EB3503-9DAA-4987-87F9-333BAE5EF642</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>USERSPOINT</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

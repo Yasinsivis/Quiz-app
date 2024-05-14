@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="39CE6D8C-1D94-BDAD-D388-473847ECB5B1" containerWithKeyObject="0AC97336-01AD-0D95-F49F-8AD80424AFFF" localFKIndex="E221F04E-0CEE-2F8B-F4F7-7B1C7980E939" name="ENGLISHWORDS">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>YASINUSER</sourceObjSchema>
+<sourceObjName>ENGLISHWORDS</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:59 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<referredTableLongName>YASINUSER.ENGLISHWORDS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>32104564-B679-271D-EFC7-A73B48F95E05</referredTableID>
+<keyObject>2A051716-F00B-E1D1-A614-4CE98D285447</keyObject>
+<referredKeyID>2A051716-F00B-E1D1-A614-4CE98D285447</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>ENGWORD_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

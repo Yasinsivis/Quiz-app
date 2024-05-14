@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<LogicalDesign class="oracle.dbtools.crest.model.design.logical.LogicalDesign" name="Logical" id="045137F1-B68B-ECC0-DCF9-E606B5D28CF2" mainViewID="7C9F4EAE-C657-7E87-2D36-27B9A93813A0">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:32:58 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</LogicalDesign>

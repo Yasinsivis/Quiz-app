@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SegmentOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.SegmentOraclev10g" name="Storage4" directorySegmentName="seg_0" id="AD4893C8-CB57-8156-DF92-16923E126627">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:38:41 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<initrans>2</initrans>
+<maxTrans>255</maxTrans>
+</SegmentOraclev10g>

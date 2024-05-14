@@ -1,0 +1,56 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="USERSS" directorySegmentName="seg_0" id="4F543C8B-820C-3BFE-E63C-0065B3B899B0">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:27 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<schemaObject>4A07ADF4-28FC-C3C0-E0EF-C0ED50CE5456</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>634EBEE5-183A-676D-186E-CD55169FE02F</segment>
+<tableSpace>D5A34C30-81C4-F6B9-7D3A-DDD59562F00B</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="USERSNICKNAME" id="2C71E0F0-1A92-0977-5E6D-802921305D57">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:27 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="USER_NAME" id="3AE23BEF-DCAB-052D-72C6-5E81AE9A2ED5">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:27 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="USER_PASSWORD" id="670605D2-8955-6685-956B-38E18B356BF9">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:27 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="USERS_POINT" id="758D8398-20FC-CE78-F040-27CD84B69D6A">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:27 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="USER_ID" id="BC79C264-022D-FDD8-BA47-912D3FD08E87">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:27 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<autoIncrementDDL>IDENTITY_CLAUSE</autoIncrementDDL>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="USERSS_PK" id="3194DD8E-EB70-8A46-2D88-A20FAB1E5A3A">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:27 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<schemaObject>4A07ADF4-28FC-C3C0-E0EF-C0ED50CE5456</schemaObject>
+<segment>AD4893C8-CB57-8156-DF92-16923E126627</segment>
+<tableSpace>D5A34C30-81C4-F6B9-7D3A-DDD59562F00B</tableSpace>
+<indexSegment>AD4893C8-CB57-8156-DF92-16923E126627</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

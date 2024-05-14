@@ -1,0 +1,81 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="32104564-B679-271D-EFC7-A73B48F95E05" schemaObject="4A07ADF4-28FC-C3C0-E0EF-C0ED50CE5456" name="ENGLISHWORDS">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>YASINUSER</sourceObjSchema>
+<sourceObjName>ENGLISHWORDS</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:38:40 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ENGWORD_ID" id="FFE0D3F8-32DA-1FE5-EE06-1CD5EAE0B139">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>ENGLISHWORDS</sourceObjSchema>
+<sourceObjName>ENGWORD_ID</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:38:40 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementGenerateAlways>true</autoIncrementGenerateAlways>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementDisableCache>false</autoIncrementDisableCache>
+<autoIncrementCache>20</autoIncrementCache>
+<autoIncrementOrder>false</autoIncrementOrder>
+</Column>
+<Column name="ENGWORD_NAME" id="0B04ECEF-2AA0-553D-0AF3-18789C89C79E">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>ENGLISHWORDS</sourceObjSchema>
+<sourceObjName>ENGWORD_NAME</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:38:40 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ENGWORD_REPLY" id="165A38EF-C12A-0DC7-D754-3D111CB458DB">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>ENGLISHWORDS</sourceObjSchema>
+<sourceObjName>ENGWORD_REPLY</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:38:40 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2A051716-F00B-E1D1-A614-4CE98D285447" schemaObject="4A07ADF4-28FC-C3C0-E0EF-C0ED50CE5456" name="ENGLISHWORDS_PK">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>YASINUSER</sourceObjSchema>
+<sourceObjName>SYS_C008254</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:38:41 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FFE0D3F8-32DA-1FE5-EE06-1CD5EAE0B139"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

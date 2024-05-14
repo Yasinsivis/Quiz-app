@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="C0D66F5F-1267-7C2C-1864-F7E6A25ECB86" containerWithKeyObject="65182948-FF1D-4770-934E-F9AEA3DEBFB8" localFKIndex="041DF344-DAB0-EEB0-270A-C40CE829A924" name="USERSS">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>YASINUSER</sourceObjSchema>
+<sourceObjName>USERSS</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:02 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<referredTableLongName>YASINUSER.USERSS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>4F543C8B-820C-3BFE-E63C-0065B3B899B0</referredTableID>
+<keyObject>3194DD8E-EB70-8A46-2D88-A20FAB1E5A3A</keyObject>
+<referredKeyID>3194DD8E-EB70-8A46-2D88-A20FAB1E5A3A</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>USERSNICKNAME</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

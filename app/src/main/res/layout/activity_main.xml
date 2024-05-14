@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center|top"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="@color/BackGround"
+    tools:ignore="ExtraText"><![CDATA[
+
+    />
+    ]]>
+
+    <EditText
+        android:enabled="false"
+        android:layout_width="211dp"
+        android:layout_height="129dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="140dp"
+        android:background="@color/Transparent"
+        android:fontFamily="@font/bangers"
+        android:text="@string/app_name_2"
+        android:textAlignment="center"
+        android:textColor="@color/LUNO"
+        android:textSize="100sp" />
+     <!-- Kullanıcı adı kısmı -->
+    <EditText
+        android:id="@+id/UserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="23dp"
+        android:padding="10dp"
+        android:inputType="text"
+        android:background="@drawable/shape_border_and_background_login"
+        android:hint="@string/user_name_enter"
+        android:textColor="@color/black"
+
+        />
+    <!-- Şifre kısmı  -->
+    <EditText
+        android:id="@+id/UserPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="23dp"
+        android:padding="10dp"
+        android:inputType="textPassword"
+        android:background="@drawable/shape_border_and_background_login"
+        android:hint="@string/password"
+        android:textColor="@color/black"
+
+        />
+    <!--Giriş Buttonu-->
+
+
+    <Button
+        android:id="@+id/Giris"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/enter"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:textSize="18sp"
+        android:textColor="@color/BackGround"
+        android:backgroundTint="@color/LUNO" />
+    <!--Kayıt Buttonu-->
+    <Button
+        android:id="@+id/Kayit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="40dp"
+        android:backgroundTint="@color/LUNO"
+        android:onClick="Register_Start"
+        android:text="@string/register"
+        android:textColor="@color/BackGround"
+        android:textSize="18sp" />
+
+</LinearLayout>

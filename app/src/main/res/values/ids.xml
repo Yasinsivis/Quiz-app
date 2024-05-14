@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="Kayit" type="id" />
+    <item name="UserName" type="id" />
+    <item name="UserPassword" type="id" />
+    <item name="Giris" type="id" />
+    <item name="Register" type="id" />
+    <item name="User_Reel_Name" type="id" />
+    <item name="Email" type="id" />
+    <item name="UserNameSubmit" type="id" />
+    <item name="Password_creat" type="id" />
+    <item name="Password_submit" type="id" />
+    <item name="SubmitBtn" type="id" />
+</resources>

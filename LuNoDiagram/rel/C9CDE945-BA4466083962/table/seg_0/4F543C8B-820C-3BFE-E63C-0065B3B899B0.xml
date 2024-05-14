@@ -1,0 +1,109 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4F543C8B-820C-3BFE-E63C-0065B3B899B0" schemaObject="4A07ADF4-28FC-C3C0-E0EF-C0ED50CE5456" name="USERSS">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>YASINUSER</sourceObjSchema>
+<sourceObjName>USERSS</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:27 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="USERSNICKNAME" id="2C71E0F0-1A92-0977-5E6D-802921305D57">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>USERSS</sourceObjSchema>
+<sourceObjName>USERSNICKNAME</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:27 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USER_ID" id="BC79C264-022D-FDD8-BA47-912D3FD08E87">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>USERSS</sourceObjSchema>
+<sourceObjName>USER_ID</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:27 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementGenerateAlways>true</autoIncrementGenerateAlways>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementDisableCache>false</autoIncrementDisableCache>
+<autoIncrementCache>20</autoIncrementCache>
+<autoIncrementOrder>false</autoIncrementOrder>
+</Column>
+<Column name="USER_NAME" id="3AE23BEF-DCAB-052D-72C6-5E81AE9A2ED5">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>USERSS</sourceObjSchema>
+<sourceObjName>USER_NAME</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:27 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USER_PASSWORD" id="670605D2-8955-6685-956B-38E18B356BF9">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>USERSS</sourceObjSchema>
+<sourceObjName>USER_PASSWORD</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:27 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15 BYTE</dataTypeSize>
+<ownDataTypeParameters>15 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USERS_POINT" id="758D8398-20FC-CE78-F040-27CD84B69D6A">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>USERSS</sourceObjSchema>
+<sourceObjName>USERS_POINT</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:27 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3194DD8E-EB70-8A46-2D88-A20FAB1E5A3A" schemaObject="4A07ADF4-28FC-C3C0-E0EF-C0ED50CE5456" name="USERSS_PK">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>YASINUSER</sourceObjSchema>
+<sourceObjName>SYS_C008264</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:27 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2C71E0F0-1A92-0977-5E6D-802921305D57"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

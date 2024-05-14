@@ -1,0 +1,52 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="POINTS" directorySegmentName="seg_0" id="8BEF415D-E978-C086-9EBD-6F9530290400">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:35 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<schemaObject>4A07ADF4-28FC-C3C0-E0EF-C0ED50CE5456</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>634EBEE5-183A-676D-186E-CD55169FE02F</segment>
+<tableSpace>D5A34C30-81C4-F6B9-7D3A-DDD59562F00B</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="POINTID" id="59F99348-603B-F7F0-8544-B69638301E65">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:35 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="POINT_VALUE" id="88B6E27D-390C-6EDB-374D-BDB358946332">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:35 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="USERSPOINT" id="E12CADB3-AC7D-5198-3602-B299E4684D44">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:35 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="OUESTIONS" id="88320AA0-393A-3936-0C08-EC3B8F0D655A">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:35 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="POINTS_PK" id="17EB3503-9DAA-4987-87F9-333BAE5EF642">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:35 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<schemaObject>4A07ADF4-28FC-C3C0-E0EF-C0ED50CE5456</schemaObject>
+<segment>AD4893C8-CB57-8156-DF92-16923E126627</segment>
+<tableSpace>D5A34C30-81C4-F6B9-7D3A-DDD59562F00B</tableSpace>
+<indexSegment>AD4893C8-CB57-8156-DF92-16923E126627</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<relationalModel class="oracle.dbtools.crest.model.design.relational.RelationalDesign" name="Relational_1" id="C9CDE945-B37D-B966-CBBB-BA4466083962" mainViewID="D9762F10-2435-725C-8F69-F42F6CBAD312">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:38:33 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+<selectedRDBMSSite>79C73AAF-E1A7-E669-7DF0-025EE81A2AFC</selectedRDBMSSite>
+<importConnectionStamps>
+<importConnectionStamp class="oracle.dbtools.crest.imports.DBConnectionStamp">
+<connName>IdeConnections%23YASINUSER-Connection</connName>
+<connUser>YASINUSER</connUser>
+<connType>1</connType>
+</importConnectionStamp>
+</importConnectionStamps>
+</relationalModel>

@@ -1,0 +1,124 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0AC97336-01AD-0D95-F49F-8AD80424AFFF" schemaObject="4A07ADF4-28FC-C3C0-E0EF-C0ED50CE5456" name="QUESTIONS">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>YASINUSER</sourceObjSchema>
+<sourceObjName>QUESTIONS</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:59 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="QUESTION_ID" id="39BC49B5-07D0-A8AB-09BD-70A51ED8A99C">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>QUESTIONS</sourceObjSchema>
+<sourceObjName>QUESTION_ID</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:59 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementGenerateAlways>true</autoIncrementGenerateAlways>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementDisableCache>false</autoIncrementDisableCache>
+<autoIncrementCache>20</autoIncrementCache>
+<autoIncrementOrder>false</autoIncrementOrder>
+</Column>
+<Column name="QUESITON_CLUE" id="1C39B697-77C3-0D5C-B0EF-6C05594D8B2C">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>QUESTIONS</sourceObjSchema>
+<sourceObjName>QUESITON_CLUE</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:59 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="QUESTION_REPLY" id="2BF7F4D2-779F-1967-6FFC-3B44902A6976">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>QUESTIONS</sourceObjSchema>
+<sourceObjName>QUESTION_REPLY</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:59 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0F5DAAC8-5610-3FCC-6A9C-D7EF7BD7354E" referredColumn="320B1A9B-0A48-7D84-3656-4BA492B534B9"/>
+</associations>
+</Column>
+<Column name="QUESTION_NAME" id="41734076-842E-837A-A29E-E0FF8922D1FA">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>QUESTIONS</sourceObjSchema>
+<sourceObjName>QUESTION_NAME</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:59 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="39CE6D8C-1D94-BDAD-D388-473847ECB5B1" referredColumn="FFE0D3F8-32DA-1FE5-EE06-1CD5EAE0B139"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C83E47F3-FFCB-560A-41DB-DD4F73277FFA" schemaObject="4A07ADF4-28FC-C3C0-E0EF-C0ED50CE5456" name="QUESTIONS_PK">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>YASINUSER</sourceObjSchema>
+<sourceObjName>SYS_C008256</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:59 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="39BC49B5-07D0-A8AB-09BD-70A51ED8A99C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E221F04E-0CEE-2F8B-F4F7-7B1C7980E939" name="ENGLISHWORDS">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:59 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="41734076-842E-837A-A29E-E0FF8922D1FA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BE8E9F35-6B68-0158-9632-CB43196873ED" name="WORDS">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:59 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2BF7F4D2-779F-1967-6FFC-3B44902A6976"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

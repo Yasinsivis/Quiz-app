@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="MONTHLYLIST" directorySegmentName="seg_0" id="65182948-FF1D-4770-934E-F9AEA3DEBFB8">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:01 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<schemaObject>4A07ADF4-28FC-C3C0-E0EF-C0ED50CE5456</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>634EBEE5-183A-676D-186E-CD55169FE02F</segment>
+<tableSpace>D5A34C30-81C4-F6B9-7D3A-DDD59562F00B</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="USERNAME" id="9678732F-9AD6-4A04-5726-299516B0FFB3">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:01 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ARRANGEMENT" id="9B7563C0-93FA-7996-4EB1-CC738DDD941E">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:01 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LIST_ID" id="9BDE7CC4-57B0-9EB8-11C3-7802E951A32F">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:01 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="USERPOINT" id="EDED0B36-4CD4-3984-C695-81D0BD15B4D9">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:01 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="USERSS" id="041DF344-DAB0-EEB0-270A-C40CE829A924">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:02 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="POINTS" id="61117349-D482-7550-833E-40E980EC8EC2">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:02 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="MONTHLYLIST_PK" id="338934FF-ECAC-BA50-CCBF-0F1BA1B61949">
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:01 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<schemaObject>4A07ADF4-28FC-C3C0-E0EF-C0ED50CE5456</schemaObject>
+<segment>AD4893C8-CB57-8156-DF92-16923E126627</segment>
+<tableSpace>D5A34C30-81C4-F6B9-7D3A-DDD59562F00B</tableSpace>
+<indexSegment>AD4893C8-CB57-8156-DF92-16923E126627</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

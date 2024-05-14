@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="0F5DAAC8-5610-3FCC-6A9C-D7EF7BD7354E" containerWithKeyObject="0AC97336-01AD-0D95-F49F-8AD80424AFFF" localFKIndex="BE8E9F35-6B68-0158-9632-CB43196873ED" name="WORDS">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>YASINUSER</sourceObjSchema>
+<sourceObjName>WORDS</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:59 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<referredTableLongName>YASINUSER.WORDS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>30D2E872-D48E-30BB-3C91-FF2AD2496578</referredTableID>
+<keyObject>08B506F4-2283-ECCE-31FB-270570EE8132</keyObject>
+<referredKeyID>08B506F4-2283-ECCE-31FB-270570EE8132</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>WORDID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

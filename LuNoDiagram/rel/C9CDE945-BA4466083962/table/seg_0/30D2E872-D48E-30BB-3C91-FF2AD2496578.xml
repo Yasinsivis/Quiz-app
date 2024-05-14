@@ -1,0 +1,66 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="30D2E872-D48E-30BB-3C91-FF2AD2496578" schemaObject="4A07ADF4-28FC-C3C0-E0EF-C0ED50CE5456" name="WORDS">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>YASINUSER</sourceObjSchema>
+<sourceObjName>WORDS</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:20 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="WORDID" id="320B1A9B-0A48-7D84-3656-4BA492B534B9">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>WORDS</sourceObjSchema>
+<sourceObjName>WORDID</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:20 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementGenerateAlways>true</autoIncrementGenerateAlways>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementDisableCache>false</autoIncrementDisableCache>
+<autoIncrementCache>20</autoIncrementCache>
+<autoIncrementOrder>false</autoIncrementOrder>
+</Column>
+<Column name="WORDNAME" id="D4A197F8-CD30-2573-2DD1-E9CAC09E03C6">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>WORDS</sourceObjSchema>
+<sourceObjName>WORDNAME</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:20 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="08B506F4-2283-ECCE-31FB-270570EE8132" schemaObject="4A07ADF4-28FC-C3C0-E0EF-C0ED50CE5456" name="WORDS_PK">
+<sourceConnName>IdeConnections%23YASINUSER-Connection</sourceConnName>
+<sourceObjSchema>YASINUSER</sourceObjSchema>
+<sourceObjName>SYS_C008248</sourceObjName>
+<createdBy>yasin</createdBy>
+<createdTime>2024-04-24 22:39:20 UTC</createdTime>
+<ownerDesignName>LuNoDiagram</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="320B1A9B-0A48-7D84-3656-4BA492B534B9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
