@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
 
                     OracleDatabaseHelper.UserAdd(RegisterActivity.this, uName, uPassword);
-                    OracleDatabaseHelper.PlayerNameAdd(RegisterActivity.this, pName);
+
                     if (PlayerName.getText().toString().matches("")) {
                         CustomDialog dialog = new CustomDialog(RegisterActivity.this, "Hata", "Kullanıcı adı boş geçilemez. Lütfen kullanıcı adınızı giriniz.");
                         dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_bg);
