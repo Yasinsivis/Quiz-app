@@ -22,6 +22,11 @@ public class CustomDialog extends Dialog implements View.OnClickListener {
         this.message = message;
     }
 
+    public CustomDialog(Context context) {
+        super(context);
+        this.getWindow().setBackgroundDrawableResource(R.drawable.dialog_bg);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +45,36 @@ public class CustomDialog extends Dialog implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         dismiss();
+    }
+
+    public void showDialog() {
+        this.show();
+    }
+
+    public void setBackGround(int id) {
+        this.getWindow().setBackgroundDrawableResource(id);
+    }
+
+    public void setMessageTitleAndShow(String message, String title ) {
+        this.title = title;
+        this.message = message;
+        this.show();
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
 
