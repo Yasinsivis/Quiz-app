@@ -3,6 +3,7 @@ package com.example.luno;
 import static java.sql.DriverManager.getConnection;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,20 +33,19 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 String uName = userName.getText().toString();
                 String userpass = userPC.getText().toString();
                 String uPassword = userPassword.getText().toString();
                 String pName = PlayerName.getText().toString();
+                String E_mail = Email.getText().toString();
 
                 boolean contorlPassword = uPassword.equals(userpass);
-                if (8 > uPassword.length() && contorlPassword == false) { //eğer şifre 8 karakter kısalığından kısaysa hata mesajı verdirip geri döndürüyoruz
+                if (8 > uPassword.length() || contorlPassword == false) { //eğer şifre 8 karakter kısalığından kısaysa hata mesajı verdirip geri döndürüyoruz
                     CustomDialog dialog = new CustomDialog(RegisterActivity.this, "Hata", "Şifreniz en az 8 karakterli olmak zorundadır ve lütfen şifreleriniz aynı olsun.");
                     dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_bg);
                     dialog.show();
                 } else {
-
-                    OracleDatabaseHelper.UserAdd(RegisterActivity.this, uName, uPassword);
-
                     if (PlayerName.getText().toString().matches("")) {
                         CustomDialog dialog = new CustomDialog(RegisterActivity.this, "Hata", "Kullanıcı adı boş geçilemez. Lütfen kullanıcı adınızı giriniz.");
                         dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_bg);
@@ -58,15 +58,16 @@ public class RegisterActivity extends AppCompatActivity {
                             public void onLoginChecked(boolean result) {
 
 
-                                if (result == true) {
+                                if (result == false) {
                                     CustomDialog dialog = new CustomDialog(RegisterActivity.this, "Hata", "Böyle bir kullanıcı adı zaten var lütfen başka bir kullanıcı adı oluşturunuz...");
                                     dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_bg);
                                     dialog.show();
 
 
                                 } else {
-                                    OracleDatabaseHelper.PlayerNameAdd(RegisterActivity.this, pName);
-                                }
+                                    //OracleDatabaseHelper.PlayerNameAdd(RegisterActivity.this, pName);
+                                    OracleDatabaseHelper.UserAdd(RegisterActivity.this, uName, uPassword,E_mail);
+                                } 
 
 
                             }

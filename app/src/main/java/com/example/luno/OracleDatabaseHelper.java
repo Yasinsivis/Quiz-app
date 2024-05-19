@@ -1,7 +1,11 @@
 package com.example.luno;
 
+import static oracle.net.aso.C05.e;
+
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.StrictMode;
+import android.util.Log;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,51 +14,62 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class OracleDatabaseHelper {
-    //AsyncTask kullanarak ana iş parçacığını bloke etmeden veri tabanına ulaşıyoruz ve LUNO_USER tablosuna kullanıcıdan aldığımnız verileri ekliyoruz.
 
-    public static Connection connection;
 
-    public static void DatabaseConnec() throws ClassNotFoundException, SQLException { //Database bağlantımızı bir method haline getirip her yerden erişelbilir elde etmiş oldukç
-        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                return null;
-            }
 
-            @Override
-            protected void onPreExecute() {
-                try {
-                    Class.forName("oracle.jdbc.driver.OracleDriver");
-                    connection = DriverManager.getConnection("jdbc:oracle:thin:@//192.168.1.106:1521/XEPDB1", "YASINS", "ys");
-                } catch (SQLException | ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                    // İşlem tamamlandıktan sonra yapılacak işlemler buraya yazılır
-                }
-            }
 
-            protected void onPostExecutes(Void aVoid) {
 
-            }
 
-        }.execute();
+
+    public static Connection getDatabaseConnection() throws ClassNotFoundException, SQLException{ //Veritabanına bağlantı oluşturulan metotumuz.
+            Connection connection=null;
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            connection = DriverManager.getConnection("jdbc:oracle:thin:@//192.168.1.101:1521/XEPDB1", "YASINS", "ys");
+            Log.e("Başarılı","Veritabanına Bağlantı Kuruldu");
+            return  connection;
+
+           //Log.e("Başarılı","Veritabanına Bağlantı Kuruldu.");
+
 
     }
 
-    public static void UserAdd(final Context context, final String username, final String password) {
+
+
+
+
+
+    public static void UserAdd(final Context context, final String username, final String password, final String E_mail) { //Veritabanına yeni kullanıcı ekleyen metotumuz.
+
         AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
 
             @Override
             protected Void doInBackground(Void... voids) {
                 try {
-                    // Veritabanı işlemleri
-                    DatabaseConnec();
-                    String sql = "INSERT INTO LUNO_USER (NAME,PASSWORD) VALUES (?,?)";
-                    PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                    preparedStatement.setString(1, username);
-                    preparedStatement.setString(2, password);
-                    int affectedRows = preparedStatement.executeUpdate();
-                    preparedStatement.close();
-                    connection.close();
+
+                    Connection connection=null;
+                    connection = getDatabaseConnection(); //Veritabanına bağlanmamızı sağlayan metot.
+                    if(connection != null) {
+                        String sql = "INSERT INTO LUNO_USER (NAME,PASSWORD,E_MAIL) VALUES (?,?,?)"; //Sql dilinde yazılan veritabanı komutumuz.
+                        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                        preparedStatement.setString(1, username);  //kullanıcıdan aldığımız veriyi eklemek için girilen parametreler. username-password
+                        preparedStatement.setString(2, password);
+                        preparedStatement.setString(3,E_mail);
+                        int affectedRows = preparedStatement.executeUpdate();
+                        preparedStatement.close();
+                        connection.close();
+
+
+                        if (affectedRows > 0) {
+
+                            Log.i("OracleDatabaseHelper", "Kullanıcı başarıyla eklendi."); //Veritabanı bağlantısı ve diğer tüm işler gerçekleştikten sonra döndürülen mesaj.
+                        } else {
+                            Log.e("OracleDatabaseHelper", "Kullanıcı eklenemdi.");
+                        }
+                    }
+                    else{
+                        Log.e("OracleDatabaseHelper","Veritabanı Bağlanasıtı null");
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -69,19 +84,28 @@ public class OracleDatabaseHelper {
         task.execute();
     }
 
-    public static void PlayerNameAdd(final Context context, final String playername) {
+    public static void PlayerNameAdd(final Context context, final String playername) { //Kullanıcının oyunda ki  kullanacağı nickname adını veritabanına  ekleyen metot.
         AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+
             @Override
             protected Void doInBackground(Void... voids) {
+                Connection connection=null;
                 try {
+
                     // Veritabanı işlemleri
-                    DatabaseConnec();
-                    String sql = "INSERT INTO PLAYER (NAME) VALUES (?)";
-                    PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                    preparedStatement.setString(1, playername);
-                    int affectedRows = preparedStatement.executeUpdate();
-                    preparedStatement.close();
-                    connection.close();
+                    connection = getDatabaseConnection();
+                    if(connection != null){
+                        String sql = "INSERT INTO PLAYER (NAME) VALUES (?)";
+                        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                        preparedStatement.setString(1, playername);
+                        int affectedRows = preparedStatement.executeUpdate();
+                        preparedStatement.close();
+                        connection.close();
+                    }
+                    else{
+                        Log.e("OracleDatabaseHelper","Veritabanı Bağlanasıtı null");
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -92,41 +116,50 @@ public class OracleDatabaseHelper {
     }
 
 
-    // Örnek bir metot
-    public static void checkPlayerLogin(final String username,final OnLoginCheckedListener listener ) {
-        // AsyncTask'ı başlatmak için yeni bir instance oluştur ve execute() metoduyla çalıştır
+
+    public static void checkPlayerLogin(final String username,final OnLoginCheckedListener listener ) { //Kullanıcın oluşturduğu nickname'in veritabanında daha önce oluşturulup oluşturulmadığını kontrol eden metottur.
+
         AsyncTask<Void, Void, Boolean> task = new AsyncTask<Void, Void, Boolean>() {
-
-
-
             @Override
             protected Boolean doInBackground(Void... voids) {
                boolean result = false;
-
+                Connection connection = null;
                 try {
-                    DatabaseConnec();
-                    String sql = "SELECT COUNT(*) FROM PLAYER WHERE NAME = ? ";
-                    PreparedStatement statement = connection.prepareStatement(sql);
-                    statement.setString(1, username);
-                    ResultSet resultSet = statement.executeQuery();
-                    while (resultSet.next()) {
-                        // Sonuçları işleyin
-                        result = true;
+
+                    connection = getDatabaseConnection();
+                    if(connection != null){
+
+                        String sql = "SELECT COUNT(*) FROM PLAYER WHERE NAME = ? ";
+                        PreparedStatement statement = connection.prepareStatement(sql);
+                        statement.setString(1, username);
+                        ResultSet resultSet = statement.executeQuery();
+                        while (resultSet.next()) {
+
+                            result = true;
+                        }
+
+                    } else{
+                        Log.e("OracleDatabaseHelper","Veritabanı Bağlanasıtı null");
                     }
 
-                }catch (SQLException ex) {
-                    throw new RuntimeException(ex);
+
+                }catch (Exception ex) {
+                    return false;
 
                 } finally {
+                    if(connection == null){
+                        return result;
+                    }
                     try {
                         connection.close();
                     } catch (SQLException ex) {
                         throw new RuntimeException(ex);
                     }
-                    return result;
+
 
                 }
 
+                return result;
             }
             @Override
             protected void onPostExecute(Boolean result){
