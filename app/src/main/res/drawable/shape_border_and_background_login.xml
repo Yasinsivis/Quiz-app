@@ -8,5 +8,5 @@
     </solid>
     <stroke
         android:width="3dp"
-        android:color="@color/LUNO" />
+        android:color="@color/BackGround2" />
 </shape>

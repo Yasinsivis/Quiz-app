@@ -2,8 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="LUNO">#C40C0C</color>
+    <color name="BackGround2">#C40C0C</color>
     <color name="BackGround">#FF8A08</color>
     <color name="DialogBtn">#F67828</color>
     <color name="Transparent">#00000000</color>
+    <color name="Opac_Transparent">#99000000</color>
 </resources>

@@ -2,8 +2,8 @@ package com.example.luno;
 
 
 import android.os.AsyncTask;
-import android.os.Looper;
 import android.util.Log;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -20,7 +20,7 @@ public class OracleDatabaseHelper {
         createDatabaseConnection();
     }
 
-    private static Connection getConnection(){
+    private static Connection getConnection() {
         if (isConnectionValid())
             return connection;
         //Veritabanına bağlantı oluşturulan metotumuz.
@@ -55,17 +55,42 @@ public class OracleDatabaseHelper {
         }
     }
 
+
     public ProcessResult createUser(String name, String password, String email, String playerName) {
         try {
             return new CreateUser().execute(name, password, email, playerName).get();
         } catch (ExecutionException | InterruptedException e) {
-            return new ProcessResult(false,"Kayıt işlemi Başarısız");;
+            return new ProcessResult(false, "Kayıt işlemi Başarısız");
         }
     }
 
-    public static class CreateUser extends AsyncTask<String, Void, ProcessResult> { //Veritabanına yeni kullanıcı ekleyen metotumuz.
+    public static Boolean checkLoginCredentials(String username, String password) throws SQLException {
+
+        Connection connection2 = null;
+
+        if (connection2 == null) {
+            return new ProcessResult(false, "İnternet Bağlantınızı Kontrol edin").getResult();
+        }
+
+        String sql = "SELECT COUNT(*) FROM LUNO_USER WHERE NAME = ? AND PASSWORD = ? ";
+        PreparedStatement statement4 = connection2.prepareStatement(sql);
+        statement4.setString(1, username);
+        statement4.setString(2, password);
+        ResultSet resultSet4 = statement4.executeQuery();
+
+        if (resultSet4.next() && resultSet4.getInt(1) > 0) {
+            Boolean check;
+            check = new ProcessResult(false, "Bu Kullanıcı Adı Ya Da E-posta  Daha Önceden Alınmış").getResult();
+            return check;
+        }
+
+        return true;
+    }
+
+    public static class CreateUser extends AsyncTask<String, Void, ProcessResult> {
 
         Connection connection1;
+
         @Override
         protected ProcessResult doInBackground(String... params) {
             try {
@@ -78,18 +103,26 @@ public class OracleDatabaseHelper {
                 connection1 = getConnection();
 
                 if (connection1 == null) {
-                    return new ProcessResult(false,"İnternet Bağlantınızı Kontrol edin");
+                    return new ProcessResult(false, "İnternet Bağlantınızı Kontrol edin");
                 }
 
 
                 //Veritabanına bağlanmamızı sağlayan metot.
+                String sql4 = "SELECT COUNT(*) FROM LUNO_USER WHERE NAME = ? OR E_MAIL = ?";
+                PreparedStatement statement4 = connection1.prepareStatement(sql4);
+                statement4.setString(1, username);
+                statement4.setString(2, email);
+                ResultSet resultSet4 = statement4.executeQuery();
+                if (resultSet4.next() && resultSet4.getInt(1) > 0) {
+                    return new ProcessResult(false, "Bu Kullanıcı Adı Ya Da E-posta  Daha Önceden Alınmış");
+                }
 
                 String sql = "SELECT COUNT(*) FROM PLAYER WHERE NAME = ? ";
                 PreparedStatement statement = connection1.prepareStatement(sql);
-                statement.setString(1, username);
+                statement.setString(1, playerName);
                 ResultSet resultSet = statement.executeQuery();
-                if (resultSet.next() && resultSet.getInt(1)>0) {
-                    return new ProcessResult(false,"Bu Kullanıcı Adı Daha Önceden Alınmış");
+                if (resultSet.next() && resultSet.getInt(1) > 0) {
+                    return new ProcessResult(false, "Bu Oyuncu Adı Daha Önceden Alınmış");
                 }
 
                 String sql2 = "INSERT INTO LUNO_USER (NAME,PASSWORD,E_MAIL) VALUES (?,?,?)"; //Sql dilinde yazılan veritabanı komutumuz.
@@ -101,7 +134,7 @@ public class OracleDatabaseHelper {
                 preparedStatement2.close();
 
                 if (affectedRows < 1) {
-                    return new ProcessResult(false,"Kayıt işlemi Başarısız");
+                    return new ProcessResult(false, "Kayıt işlemi Başarısız");
                 }
 
                 String sql3 = "INSERT INTO PLAYER (NAME) VALUES (?)";
@@ -111,14 +144,14 @@ public class OracleDatabaseHelper {
                 preparedStatement3.close();
 
                 if (affectedRows2 < 1) {
-                    return new ProcessResult(false,"Kayıt işlemi Başarısız");
+                    return new ProcessResult(false, "Kayıt işlemi Başarısız");
                 }
 
 
             } catch (Exception e) {
-                return new ProcessResult(false,"Kayıt işlemi Başarısız");
+                return new ProcessResult(false, "Kayıt işlemi Başarısız");
             }
-            return new ProcessResult(false,"Kullanıcı başarıyla eklendi");;
+            return new ProcessResult(false, "Kullanıcı başarıyla eklendi");
         }
 
         @Override
@@ -126,7 +159,10 @@ public class OracleDatabaseHelper {
             super.onPostExecute(result);
         }
     }
+
+
 }
+
 
 
 

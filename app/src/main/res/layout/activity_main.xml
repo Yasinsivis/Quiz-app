@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -9,11 +9,9 @@
     android:gravity="center|top"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="@color/BackGround"
-    tools:ignore="ExtraText"><![CDATA[
+    android:background="@color/BackGround">
 
-    />
-    ]]>
+
 
     <EditText
         android:enabled="false"
@@ -25,7 +23,7 @@
         android:fontFamily="@font/bangers"
         android:text="@string/app_name_2"
         android:textAlignment="center"
-        android:textColor="@color/LUNO"
+        android:textColor="@color/BackGround2"
         android:textSize="100sp" />
      <!-- Kullanıcı adı kısmı -->
     <EditText
@@ -61,7 +59,7 @@
 
 
     <Button
-        android:id="@+id/Giris"
+        android:id="@+id/Enter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -70,16 +68,16 @@
         android:layout_marginLeft="40dp"
         android:textSize="18sp"
         android:textColor="@color/BackGround"
-        android:backgroundTint="@color/LUNO" />
+        android:backgroundTint="@color/BackGround2" />
     <!--Kayıt Buttonu-->
     <Button
-        android:id="@+id/Kayit"
+        android:id="@+id/Register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="3dp"
         android:layout_marginRight="40dp"
-        android:backgroundTint="@color/LUNO"
+        android:backgroundTint="@color/BackGround2"
         android:onClick="Register_Start"
         android:text="@string/register"
         android:textColor="@color/BackGround"

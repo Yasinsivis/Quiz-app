@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <item name="Kayit" type="id" />
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <item name="RegisterActivity" type="id" />
     <item name="UserName" type="id" />
     <item name="UserPassword" type="id" />
-    <item name="Giris" type="id" />
-    <item name="Register" type="id" />
+    <item name="Enter" type="id" />
+    <item name="Register" type="id"  />
     <item name="User_Reel_Name" type="id" />
     <item name="Email" type="id" />
     <item name="UserNameSubmit" type="id" />

@@ -35,17 +35,17 @@ public class RegisterActivity extends AppCompatActivity {
             CustomDialog dialog = new CustomDialog(RegisterActivity.this);
 
             if (!uPassword.equals(userpass)) {
-                dialog.setMessageTitleAndShow("Hata", "Şifreler aynı değil.");
+                dialog.setMessageTitleAndShow("Şifreler Aynı Değil", "Hata");
                 return;
             }
 
             if (8 > uPassword.length()) { //eğer şifre 8 karakter kısalığından kısaysa hata mesajı verdirip geri döndürüyoruz
-                dialog.setMessageTitleAndShow("Hata", "Kullanıcı adı en az 8 karakter olmalıdır");
+                dialog.setMessageTitleAndShow(" Şifre en az 8 karakter olmalıdır", "Hata");
                 return;
             }
 
             if (PlayerName.getText().toString().isEmpty()) {
-                dialog.setMessageTitleAndShow("Hata", "Kullanıcı adı boş geçilemez. Lütfen kullanıcı adınızı giriniz.");
+                dialog.setMessageTitleAndShow("Kullanıcı adı boş geçilemez. Lütfen kullanıcı adınızı giriniz.", "Hata");
                 return;
             }
             //OracleDatabaseHelper.PlayerNameAdd(RegisterActivity.this, pName);
