@@ -2,6 +2,7 @@ package com.example.luno;
 
 
 import android.os.AsyncTask;
+import android.os.Looper;
 import android.util.Log;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -48,7 +49,7 @@ public class OracleDatabaseHelper {
         if (connection == null)
             return false;
         try {
-            return connection.isValid(5);
+            return !connection.isClosed();
         } catch (SQLException e) {
             return false;
         }
@@ -64,19 +65,19 @@ public class OracleDatabaseHelper {
 
     public static class CreateUser extends AsyncTask<String, Void, Boolean> { //Veritabanına yeni kullanıcı ekleyen metotumuz.
 
+        Connection connection1;
         @Override
         protected Boolean doInBackground(String... params) {
             try {
+
                 String username = params[0];
                 String password = params[1];
                 String email = params[2];
                 String playerName = params[3];
-                Connection connection1;
+
                 connection1 = getConnection();
 
                 if (connection1 == null) {
-                    CustomDialog customDialog = new CustomDialog(APP.Context);
-                    customDialog.setMessageTitleAndShow("Hata", "İnternet Bağlantınızı Kontrol Ediniz.");
                     return false;
                 }
 
@@ -84,29 +85,27 @@ public class OracleDatabaseHelper {
                 //Veritabanına bağlanmamızı sağlayan metot.
 
                 String sql = "SELECT COUNT(*) FROM PLAYER WHERE NAME = ? ";
-                PreparedStatement statement = connection.prepareStatement(sql);
+                PreparedStatement statement = connection1.prepareStatement(sql);
                 statement.setString(1, username);
                 ResultSet resultSet = statement.executeQuery();
-                if (resultSet.next()) {
-                    CustomDialog customDialog = new CustomDialog(APP.Context);
-                    customDialog.setMessageTitleAndShow("Hata", "Kullanıcı Adı Alınmış.");
+                if (resultSet.next() && resultSet.getInt(1)>0) {
                     return false;
                 }
 
                 String sql2 = "INSERT INTO LUNO_USER (NAME,PASSWORD,E_MAIL) VALUES (?,?,?)"; //Sql dilinde yazılan veritabanı komutumuz.
-                PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+                PreparedStatement preparedStatement2 = connection1.prepareStatement(sql2);
                 preparedStatement2.setString(1, username);  //kullanıcıdan aldığımız veriyi eklemek için girilen parametreler. username-password
                 preparedStatement2.setString(2, password);
                 preparedStatement2.setString(3, email);
                 int affectedRows = preparedStatement2.executeUpdate();
                 preparedStatement2.close();
 
-                if (affectedRows > 0) {
+                if (affectedRows < 1) {
                     return false;
                 }
 
                 String sql3 = "INSERT INTO PLAYER (NAME) VALUES (?)";
-                PreparedStatement preparedStatement3 = connection.prepareStatement(sql3);
+                PreparedStatement preparedStatement3 = connection1.prepareStatement(sql3);
                 preparedStatement3.setString(1, playerName);
                 int affectedRows2 = preparedStatement3.executeUpdate();
                 preparedStatement3.close();
@@ -126,12 +125,6 @@ public class OracleDatabaseHelper {
 
         @Override
         protected void onPostExecute(Boolean result) {
-            CustomDialog customDialog = new CustomDialog(APP.Context);
-            if (result) {
-                customDialog.setMessageTitleAndShow("Hata", "Kayıt İşlemi Başarısız");
-            } else {
-                customDialog.setMessageTitleAndShow("Onay", "Kayıt İşlemi Başarılı");
-            }
             super.onPostExecute(result);
         }
     }
