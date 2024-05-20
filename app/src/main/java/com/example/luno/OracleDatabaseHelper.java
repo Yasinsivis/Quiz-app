@@ -55,19 +55,19 @@ public class OracleDatabaseHelper {
         }
     }
 
-    public boolean createUser(String name, String password, String email, String playerName) {
+    public ProcessResult createUser(String name, String password, String email, String playerName) {
         try {
-           return new CreateUser().execute(name, password, email, playerName).get();
+            return new CreateUser().execute(name, password, email, playerName).get();
         } catch (ExecutionException | InterruptedException e) {
-            return false;
+            return new ProcessResult(false,"Kayıt işlemi Başarısız");;
         }
     }
 
-    public static class CreateUser extends AsyncTask<String, Void, Boolean> { //Veritabanına yeni kullanıcı ekleyen metotumuz.
+    public static class CreateUser extends AsyncTask<String, Void, ProcessResult> { //Veritabanına yeni kullanıcı ekleyen metotumuz.
 
         Connection connection1;
         @Override
-        protected Boolean doInBackground(String... params) {
+        protected ProcessResult doInBackground(String... params) {
             try {
 
                 String username = params[0];
@@ -78,7 +78,7 @@ public class OracleDatabaseHelper {
                 connection1 = getConnection();
 
                 if (connection1 == null) {
-                    return false;
+                    return new ProcessResult(false,"İnternet Bağlantınızı Kontrol edin");
                 }
 
 
@@ -89,7 +89,7 @@ public class OracleDatabaseHelper {
                 statement.setString(1, username);
                 ResultSet resultSet = statement.executeQuery();
                 if (resultSet.next() && resultSet.getInt(1)>0) {
-                    return false;
+                    return new ProcessResult(false,"Bu Kullanıcı Adı Daha Önceden Alınmış");
                 }
 
                 String sql2 = "INSERT INTO LUNO_USER (NAME,PASSWORD,E_MAIL) VALUES (?,?,?)"; //Sql dilinde yazılan veritabanı komutumuz.
@@ -101,7 +101,7 @@ public class OracleDatabaseHelper {
                 preparedStatement2.close();
 
                 if (affectedRows < 1) {
-                    return false;
+                    return new ProcessResult(false,"Kayıt işlemi Başarısız");
                 }
 
                 String sql3 = "INSERT INTO PLAYER (NAME) VALUES (?)";
@@ -110,21 +110,19 @@ public class OracleDatabaseHelper {
                 int affectedRows2 = preparedStatement3.executeUpdate();
                 preparedStatement3.close();
 
-                if (affectedRows2 > 0) {
-                    Log.i("OracleDatabaseHelper", "Kullanıcı başarıyla eklendi."); //Veritabanı bağlantısı ve diğer tüm işler gerçekleştikten sonra döndürülen mesaj.
-                } else {
-                    Log.e("OracleDatabaseHelper", "Kullanıcı eklenemdi.");
+                if (affectedRows2 < 1) {
+                    return new ProcessResult(false,"Kayıt işlemi Başarısız");
                 }
 
 
             } catch (Exception e) {
-                return false;
+                return new ProcessResult(false,"Kayıt işlemi Başarısız");
             }
-            return true;
+            return new ProcessResult(false,"Kullanıcı başarıyla eklendi");;
         }
 
         @Override
-        protected void onPostExecute(Boolean result) {
+        protected void onPostExecute(ProcessResult result) {
             super.onPostExecute(result);
         }
     }

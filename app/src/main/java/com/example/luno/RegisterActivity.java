@@ -49,9 +49,11 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
             //OracleDatabaseHelper.PlayerNameAdd(RegisterActivity.this, pName);
-            boolean result = APP.Database.createUser(uName, uPassword, E_mail, pName);
-            if (!result) {
-                dialog.setMessageTitleAndShow("Hata", "başaramadık");
+            ProcessResult result = APP.Database.createUser(uName, uPassword, E_mail, pName);
+            if (!result.getResult()) {
+                dialog.setMessageTitleAndShow("Hata", result.getMessage());
+            } else {
+                dialog.setMessageTitleAndShow("Onay", result.getMessage());
             }
 
         });
