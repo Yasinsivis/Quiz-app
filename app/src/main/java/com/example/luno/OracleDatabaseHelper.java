@@ -20,10 +20,10 @@ public class OracleDatabaseHelper {
         createDatabaseConnection();
     }
 
-    private static Connection getConnection() {
+    public static Connection getConnection() {
         if (isConnectionValid())
             return connection;
-        //Veritabanına bağlantı oluşturulan metotumuz.
+
         createDatabaseConnection();
         if (isConnectionValid()) {
             return connection;
@@ -32,13 +32,13 @@ public class OracleDatabaseHelper {
             customDialog.setMessageTitleAndShow("Hata", "İnternet Bağlantınızı Kontrol Ediniz.");
         }
         return null;
-        //Log.e("Başarılı","Veritabanına Bağlantı Kuruldu.");
+
     }
 
     private static void createDatabaseConnection() {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            connection = DriverManager.getConnection("jdbc:oracle:thin:@//192.168.1.101:1521/XEPDB1", "YASINS", "ys");
+            connection = DriverManager.getConnection("jdbc:oracle:thin:@//192.168.1.201:1521/XEPDB1", "YASINS", "ys");
             Log.e("Başarılı", "Veritabanına Bağlantı Kuruldu");
         } catch (Exception e) {
             Log.e("Başarısız", "Veritabanına Bağlantı kurulamadı");
@@ -64,29 +64,6 @@ public class OracleDatabaseHelper {
         }
     }
 
-    public static Boolean checkLoginCredentials(String username, String password) throws SQLException {
-
-        Connection connection2 = null;
-
-        if (connection2 == null) {
-            return new ProcessResult(false, "İnternet Bağlantınızı Kontrol edin").getResult();
-        }
-
-        String sql = "SELECT COUNT(*) FROM LUNO_USER WHERE NAME = ? AND PASSWORD = ? ";
-        PreparedStatement statement4 = connection2.prepareStatement(sql);
-        statement4.setString(1, username);
-        statement4.setString(2, password);
-        ResultSet resultSet4 = statement4.executeQuery();
-
-        if (resultSet4.next() && resultSet4.getInt(1) > 0) {
-            Boolean check;
-            check = new ProcessResult(false, "Bu Kullanıcı Adı Ya Da E-posta  Daha Önceden Alınmış").getResult();
-            return check;
-        }
-
-        return true;
-    }
-
     public static class CreateUser extends AsyncTask<String, Void, ProcessResult> {
 
         Connection connection1;
@@ -107,7 +84,7 @@ public class OracleDatabaseHelper {
                 }
 
 
-                //Veritabanına bağlanmamızı sağlayan metot.
+
                 String sql4 = "SELECT COUNT(*) FROM LUNO_USER WHERE NAME = ? OR E_MAIL = ?";
                 PreparedStatement statement4 = connection1.prepareStatement(sql4);
                 statement4.setString(1, username);
@@ -125,9 +102,9 @@ public class OracleDatabaseHelper {
                     return new ProcessResult(false, "Bu Oyuncu Adı Daha Önceden Alınmış");
                 }
 
-                String sql2 = "INSERT INTO LUNO_USER (NAME,PASSWORD,E_MAIL) VALUES (?,?,?)"; //Sql dilinde yazılan veritabanı komutumuz.
+                String sql2 = "INSERT INTO LUNO_USER (NAME,PASSWORD,E_MAIL) VALUES (?,?,?)";
                 PreparedStatement preparedStatement2 = connection1.prepareStatement(sql2);
-                preparedStatement2.setString(1, username);  //kullanıcıdan aldığımız veriyi eklemek için girilen parametreler. username-password
+                preparedStatement2.setString(1, username);
                 preparedStatement2.setString(2, password);
                 preparedStatement2.setString(3, email);
                 int affectedRows = preparedStatement2.executeUpdate();
@@ -159,9 +136,60 @@ public class OracleDatabaseHelper {
             super.onPostExecute(result);
         }
     }
+    public ProcessResult Login(String name , String password){
+
+        try {
+            return new LoginCheck().execute(name,password).get();
+        } catch (Exception e){
+            return  new ProcessResult(false,"Giriş İşlemi Başarısız");
+        }
+    }
+
+    public static class LoginCheck extends   AsyncTask<String, Void, ProcessResult> {
+        Connection connection2;
+        @Override
+        protected ProcessResult doInBackground(String... params) {
+            try {
+
+                String Username = params[0];
+                String Password = params[1];
+
+                connection2 = getConnection();
+
+                if (connection2 == null) {
+                    Log.e("Hata", "İnternet Bağlantısını Kontrol Ediniz Lütfen");
+                }
+
+
+                String sql = "SELECT COUNT(*) FROM LUNO_USER WHERE NAME = ? AND PASSWORD = ?";
+                PreparedStatement statement = connection2.prepareStatement(sql);
+                statement.setString(1, Username);
+                statement.setString(2, Password);
+                ResultSet resultSet = statement.executeQuery();
+                if (resultSet.next() && resultSet.getInt(1) > 0) {
+                    return new ProcessResult(true,"Giriş Başarılı");
+                } else{
+                    return new ProcessResult(false,"Giriş Başarısız");
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        @Override
+        protected void onPostExecute(ProcessResult result) {
+            super.onPostExecute(result);
+        }
+    }
 
 
 }
+
+
+
+
+
+
+
 
 
 

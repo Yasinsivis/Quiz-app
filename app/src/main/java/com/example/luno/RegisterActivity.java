@@ -1,6 +1,10 @@
 package com.example.luno;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,11 +12,21 @@ import androidx.appcompat.app.AppCompatActivity;
 public class RegisterActivity extends AppCompatActivity {
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         userRegistration();
+
+        findViewById(R.id.RegisterActivity).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                InputMethodManager imm =(InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                return true;
+            }
+        });
     }
 
 
@@ -25,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         EditText userPassword = findViewById(R.id.Password);
         EditText userPC = findViewById(R.id.Password_submit);
 
-        //Kayıt ol butonuna tıklandığı an çalışcak işlemler
+
         Submit.setOnClickListener(v -> {
             String uName = userName.getText().toString();
             String userpass = userPC.getText().toString();
@@ -48,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
                 dialog.setMessageTitleAndShow("Kullanıcı adı boş geçilemez. Lütfen kullanıcı adınızı giriniz.", "Hata");
                 return;
             }
-            //OracleDatabaseHelper.PlayerNameAdd(RegisterActivity.this, pName);
+
             ProcessResult result = APP.Database.createUser(uName, uPassword, E_mail, pName);
             if (!result.getResult()) {
                 dialog.setMessageTitleAndShow("Hata", result.getMessage());
