@@ -10,36 +10,64 @@
     android:orientation="vertical"
     tools:context=".HomeActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/register_border"
+  <LinearLayout
+      android:layout_width="410dp"
+      android:layout_height="150dp"
+      android:orientation="horizontal">
+      <ImageView
+          android:backgroundTint="@color/DialogBtn"
+          android:layout_marginTop="40dp"
+          android:layout_marginLeft="20dp"
+          android:layout_width="60dp"
+          android:layout_height="60dp"
+          android:background="@drawable/icon_cornes"
+          android:src="@drawable/profile_icon"
+          android:scaleType="fitCenter"/>
 
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:enabled="false"
-        android:fontFamily="@font/bangers"
-        android:soundEffectsEnabled="true"
-        android:layout_marginTop="250dp"
-        android:text="@string/app_name_2"
-        android:textAlignment="center"
-        android:textColor="@color/BackGround2"
-        android:textSize="80sp"
-        android:textStyle="bold" />
+      <ImageView
+          android:layout_width="60dp"
+          android:layout_height="60dp"
+          android:layout_marginTop="40dp"
+          android:layout_marginLeft="240dp"
+          android:background="@drawable/icon_cornes"
+          android:backgroundTint="@color/DialogBtn"
+          android:scaleType="fitCenter"
+          android:src="@drawable/settings" />
+  </LinearLayout>
 
-    <Button
-        android:id="@+id/PlayBTN"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:orientation="vertical"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@color/BackGround2"
-        android:text="@string/Play"
-        android:textColor="@color/BackGround"
-        android:textSize="18sp" />
+       android:paddingBottom="20dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:enabled="false"
+            android:fontFamily="@font/bangers"
+            android:soundEffectsEnabled="true"
+            android:layout_marginTop="10dp"
+            android:text="@string/app_name_2"
+            android:textAlignment="center"
+            android:textColor="@color/BackGround2"
+            android:textSize="80sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/PlayBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="2dp"
+            android:backgroundTint="@color/BackGround2"
+            android:text="@string/Play"
+            android:textColor="@color/BackGround"
+            android:textSize="18sp" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

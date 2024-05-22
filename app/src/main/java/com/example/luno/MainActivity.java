@@ -43,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
                 dialog.setMessageTitleAndShow(" Şifre en az 8 karakter olmalıdır", "Hata");
                 return;
             }
+            if(userName.getText().toString().isEmpty() || userPassword.getText().toString().isEmpty()){
+                dialog.setMessageTitleAndShow("Kullanıcı Adı veya Şifre Alanları Boş Girilemez.!","Hata");
+            }
             ProcessResult result = APP.Database.Login(Username, Userpassword);
             if (!result.getResult()) {
                 dialog.setMessageTitleAndShow("Girdiğiniz Bilgiler Yanlış  Lütfen Tekrar Giriniz.", "Uyarı");
