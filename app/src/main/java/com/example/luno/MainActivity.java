@@ -39,18 +39,20 @@ public class MainActivity extends AppCompatActivity {
 
 
             CustomDialog dialog = new CustomDialog(MainActivity.this);
+            if(userName.getText().toString().isEmpty() || userPassword.getText().toString().isEmpty()){
+                dialog.setMessageTitleAndShow("Kullanıcı Adı veya Şifre Alanları Boş Girilemez.!","Hata");
+                return;
+            }
             if (8 > userPassword.length()) { //eğer şifre 8 karakter kısalığından kısaysa hata mesajı verdirip geri döndürüyoruz
                 dialog.setMessageTitleAndShow(" Şifre en az 8 karakter olmalıdır", "Hata");
                 return;
-            }
-            if(userName.getText().toString().isEmpty() || userPassword.getText().toString().isEmpty()){
-                dialog.setMessageTitleAndShow("Kullanıcı Adı veya Şifre Alanları Boş Girilemez.!","Hata");
             }
             ProcessResult result = APP.Database.Login(Username, Userpassword);
             if (!result.getResult()) {
                 dialog.setMessageTitleAndShow("Girdiğiniz Bilgiler Yanlış  Lütfen Tekrar Giriniz.", "Uyarı");
             } else {
                 dialog.setMessageTitleAndShow("Giriş Başarılı", "Başarılı");
+                dialog.hide();
                 Intent HomeUp = new Intent(MainActivity.this, HomeActivity.class);
                 startActivity(HomeUp);
             }

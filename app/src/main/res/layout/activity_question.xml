@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".QuestionActivity"
+    android:background="@color/BackGround"
+    >
+    <EditText
+        android:enabled="false"
+        android:layout_width="211dp"
+        android:layout_height="129dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@color/Transparent"
+        android:fontFamily="@font/bangers"
+        android:text="@string/app_name_2"
+        android:textAlignment="center"
+        android:textColor="@color/BackGround2"
+        android:textSize="100sp" />
+   <LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:paddingBottom="20dp"
+       android:orientation="vertical"
+       android:paddingTop="1dp">
+       <!-- Soru Metni -->
+       <TextView
+           android:id="@+id/questionTextView"
+           android:layout_width="380dp"
+           android:layout_height="wrap_content"
+           android:background="@drawable/shape_border_and_background_login"
+           android:text="Bu bir örnek sorudur?"
+           android:textSize="18sp"
+           android:paddingTop="16dp"
+           android:textAlignment="center"
+           android:layout_marginTop="20dp"
+           android:paddingBottom="16dp"
+           />
+       <TextView
+           android:layout_width="120dp"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:layout_gravity="left"
+           android:textAlignment="center"
+           android:background="@drawable/shape_border_and_background_login"
+           android:padding="6dp"
+           android:text="Puan:10"
+           android:textSize="16sp"
+           tools:ignore="RtlCompat" />
+       <TextView
+           android:layout_width="150dp"
+           android:layout_height="wrap_content"
+           android:textAlignment="center"
+           android:text="İpucu"
+           android:layout_marginTop="-35dp"
+           android:padding="6dp"
+           android:background="@drawable/shape_border_and_background_login"
+           android:layout_gravity="right"
+           tools:ignore="RtlCompat" />
+
+
+   </LinearLayout>
+
+
+    <!-- Cevap Seçenekleri -->
+    <RadioGroup
+        android:id="@+id/answersRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_border_and_background_login"
+        android:padding="10dp"
+        >
+
+
+        <RadioButton
+            android:id="@+id/answer1RadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_border_and_background_login"
+            android:layout_marginBottom="3dp"
+            android:text="Cevap 1" />
+
+        <RadioButton
+            android:id="@+id/answer2RadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/shape_border_and_background_login"
+            android:text="Cevap 2" />
+
+        <RadioButton
+            android:id="@+id/answer3RadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/shape_border_and_background_login"
+            android:text="Cevap 3" />
+
+        <RadioButton
+            android:id="@+id/answer4RadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/shape_border_and_background_login"
+            android:text="Cevap 4" />
+    </RadioGroup>
+
+    <!-- Gönder Butonu -->
+    <Button
+        android:id="@+id/EnterButton"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/BackGround2"
+        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
+        android:text="Gönder"
+        android:layout_gravity="center_horizontal"
+       />
+    <Button
+        android:id="@+id/ExitButton"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/BackGround2"
+        android:layout_marginTop="1dp"
+        android:layout_height="wrap_content"
+        android:text="Çıkış"
+        android:layout_gravity="center_horizontal"
+        />
+
+</LinearLayout>
