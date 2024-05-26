@@ -40,6 +40,7 @@
            android:paddingBottom="16dp"
            />
        <TextView
+           android:id="@+id/Point"
            android:layout_width="120dp"
            android:layout_height="wrap_content"
            android:layout_marginTop="10dp"
@@ -51,6 +52,7 @@
            android:textSize="16sp"
            tools:ignore="RtlCompat" />
        <TextView
+           android:id="@+id/Hint"
            android:layout_width="150dp"
            android:layout_height="wrap_content"
            android:textAlignment="center"

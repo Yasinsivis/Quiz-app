@@ -11,4 +11,6 @@
     <item name="Password_creat" type="id" />
     <item name="Password_submit" type="id" />
     <item name="SubmitBtn" type="id" />
+    <item name="Point" type="id" />
+    <item name="Hint" type="id" />
 </resources>

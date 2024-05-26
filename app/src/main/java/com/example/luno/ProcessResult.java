@@ -5,6 +5,8 @@ public class ProcessResult {
     private String message;
     private Boolean result;
 
+    private Questions quesiton;
+
     public ProcessResult ( Boolean result, String message) {
         this.result = result;
         this.message = message;
@@ -22,7 +24,12 @@ public class ProcessResult {
         return result;
     }
 
+
     public void setResult(Boolean result) {
         this.result = result;
+    }
+
+    public Questions getQuestion(){
+        return quesiton;
     }
 }
