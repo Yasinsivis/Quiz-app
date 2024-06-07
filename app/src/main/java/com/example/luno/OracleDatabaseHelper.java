@@ -200,7 +200,6 @@ public class OracleDatabaseHelper {
                     return new ProcessResult(false, "İnternet Bağlantınızı Kontrol edin");
                 }
 
-
                 String sql4 = "SELECT * FROM TEST ";
                 PreparedStatement statement = connection1.prepareStatement(sql4);
                 ResultSet resultSet = statement.executeQuery();
@@ -298,8 +297,6 @@ public class OracleDatabaseHelper {
                     PreparedStatement stmt = connection3.prepareStatement(query);
                     stmt.setInt(1, testId);
                     ResultSet rs = stmt.executeQuery();
-                    System.out.println("Sorgu Yürütüldü");
-
 
                     while (rs.next()) {
                         Question question = new Question();
