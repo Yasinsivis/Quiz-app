@@ -11,6 +11,11 @@ public class ProcessResult {
         this.result = result;
         this.message = message;
     }
+    public ProcessResult(Boolean result,String message , Questions question){
+        this.result=result;
+        this.message=message;
+        this.quesiton=question;
+    }
 
     public String getMessage() {
         return message;
@@ -32,4 +37,5 @@ public class ProcessResult {
     public Questions getQuestion(){
         return quesiton;
     }
+
 }

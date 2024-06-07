@@ -29,7 +29,7 @@
        <!-- Soru Metni -->
        <TextView
            android:id="@+id/questionTextView"
-           android:layout_width="380dp"
+           android:layout_width="360dp"
            android:layout_height="wrap_content"
            android:background="@drawable/shape_border_and_background_login"
            android:text="Bu bir örnek sorudur?"

@@ -10,44 +10,48 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class OracleDatabaseHelper {
 
-    public static Connection connection;
+    private static Future<Connection> connectionFuture;
 
+    private static final ExecutorService executorService = Executors.newFixedThreadPool(4);
 
     public OracleDatabaseHelper() {
-        createDatabaseConnection();
+
     }
 
-    public static Connection getConnection() {
-        if (isConnectionValid())
-            return connection;
-
-        createDatabaseConnection();
-        if (isConnectionValid()) {
-            return connection;
-        } else {
-            CustomDialog customDialog = new CustomDialog(APP.Context);
-            customDialog.setMessageTitleAndShow("Hata", "İnternet Bağlantınızı Kontrol Ediniz.");
+    private static Connection getConnection() throws ExecutionException, InterruptedException {
+        if (connectionFuture == null || connectionFuture.isDone() || connectionFuture.isCancelled()) {
+            connectionFuture = executorService.submit(new Callable<Connection>() {
+                @Override
+                public Connection call() throws Exception {
+                    return createDatabaseConnection();
+                }
+            });
         }
-        return null;
-
+        return connectionFuture.get();
     }
 
-    private static void createDatabaseConnection() {
+    private static Connection createDatabaseConnection() {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            connection = DriverManager.getConnection("jdbc:oracle:thin:@//192.168.1.105:1521/XEPDB1", "YASINS", "ys");
+            Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@//192.168.1.201:1521/XEPDB1", "YASINS", "yasin1234.");
             Log.e("Başarılı", "Veritabanına Bağlantı Kuruldu");
+            return connection;
         } catch (Exception e) {
             Log.e("Başarısız", "Veritabanına Bağlantı kurulamadı");
+            return null;
 
         }
     }
 
-    private static boolean isConnectionValid() {
+   /* private static boolean isConnectionValid() {
         if (connection == null)
             return false;
         try {
@@ -55,7 +59,7 @@ public class OracleDatabaseHelper {
         } catch (SQLException e) {
             return false;
         }
-    }
+    }*/
 
 
     public ProcessResult createUser(String name, String password, String email, String playerName) {
@@ -115,15 +119,35 @@ public class OracleDatabaseHelper {
                     return new ProcessResult(false, "Kayıt işlemi Başarısız");
                 }
 
-                String sql3 = "INSERT INTO PLAYER (NAME) VALUES (?)";
+                String sql5 = "SELECT ID FROM LUNO_USER WHERE NAME = ?";
+                int UserID = 0;
+                PreparedStatement statement2 = connection1.prepareStatement(sql5);
+                statement2.setString(1, username);
+                ResultSet resultSet2 = statement2.executeQuery();
+                if (resultSet2.next()) {
+                    UserID = resultSet2.getInt("ID");
+                }
+
+                String sql3 = "INSERT INTO PLAYER (NAME,USER_ID) VALUES (?,?)";
                 PreparedStatement preparedStatement3 = connection1.prepareStatement(sql3);
                 preparedStatement3.setString(1, playerName);
+                preparedStatement3.setInt(2, UserID);
                 int affectedRows2 = preparedStatement3.executeUpdate();
                 preparedStatement3.close();
 
                 if (affectedRows2 < 1) {
                     return new ProcessResult(false, "Kayıt işlemi Başarısız");
                 }
+
+               /* String sql6 = "CREATE OR REPLACE TRIGGER player_insert_trigger " +
+                        "AFTER INSERT ON PLAYER " +
+                        "FOR EACH ROW " +
+                        "BEGIN " +
+                        "    INSERT INTO LUNO_USER (PLAYER_ID) " +
+                        "    VALUES (:NEW.ID); " +
+                        "END;";
+                PreparedStatement statement3 = connection1.prepareStatement(sql6);
+                statement3.execute(); */
 
 
             } catch (Exception e) {
@@ -174,7 +198,7 @@ public class OracleDatabaseHelper {
                 } else {
                     return new ProcessResult(false, "Giriş Başarısız");
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
@@ -188,7 +212,8 @@ public class OracleDatabaseHelper {
     public ProcessResult fetchEnglishWordData() {
         String query = "SELECT * FROM ENGLISH_WORD ORDER BY DBMS_RANDOM.RANDOM FETCH FIRST 1 ROWS ONLY";
         try {
-            return new FetchEnglishWordData().execute(query).get();
+            Questions questions = new FetchEnglishWordData().execute(query).get().getQuestion();
+            return new ProcessResult(true,"Veri çekme işlemi başarılı", questions);
         } catch (ExecutionException | InterruptedException e) {
             return new ProcessResult(false, "Veri çekme işlemi başarısız");
         }
@@ -213,15 +238,15 @@ public class OracleDatabaseHelper {
 
                 int wordId = -1;
                 if (rs.next()) {
-                    wordId = rs.getInt("ID");  // Kelimenin ID'sini alın
-                    String word = rs.getString("NAME"); // Kelimeyi alın
+                    wordId = rs.getInt("ID");
+                    String word = rs.getString("NAME");
                     result.append(word).append("\n");
                 }
 
                 rs.close();
                 stmt.close();
 
-                // Eğer kelime bulunduysa, bu kelimenin ID'si ile ilgili soruları çekin
+
                 if (wordId != -1) {
                     Questions question = fetchQuestionByWordId(wordId);
                     if (question != null) {
@@ -233,7 +258,7 @@ public class OracleDatabaseHelper {
                 } else {
                     return new ProcessResult(false, "Kelime bulunamadı.");
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 return new ProcessResult(false, "Veri çekme işlemi başarısız: " + e.getMessage());
             } finally {
                 try {
@@ -251,12 +276,13 @@ public class OracleDatabaseHelper {
             super.onPostExecute(result);
         }
 
-        // `wordId` ile ilgili soruyu ve seçenekleri çekmek için yeni metot
+
         public Questions fetchQuestionByWordId(int wordId) {
             Questions question = null;
-            Connection connection4 = getConnection();
+
 
             try {
+                Connection connection4 = getConnection();
                 if (connection4 == null) {
                     Log.e("Hata", "Veritabanı Bağlantısı Oluşturulmadı.");
                 }
@@ -285,7 +311,7 @@ public class OracleDatabaseHelper {
                     System.out.println("Veri Bulundu");
 
 
-                    //String questionText = rs.getString("NAME");
+
                     String optionA = rs.getString("ANSWER_ID_1");
                     String optionB = rs.getString("ANSWER_ID_2");
                     String optionC = rs.getString("ANSWER_ID_3");
@@ -295,7 +321,7 @@ public class OracleDatabaseHelper {
                     String hint = rs.getString("CLUE");
 
 
-                    question = new Questions(wordId , optionA, optionB, optionC, optionD, correctOption, points, hint);
+                    question = new Questions(wordId,optionA, optionB, optionC, optionD, correctOption, points, hint);
                 } else {
                     System.out.println("Sonuç Bulunmadı");
                 }
@@ -303,7 +329,7 @@ public class OracleDatabaseHelper {
                 rs.close();
                 stmt.close();
                 connection4.close();
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("SQL Error: " + e.getMessage());
             }
