@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 dialog.setMessageTitleAndShow(" Şifre en az 8 karakter olmalıdır", "Hata");
                 return;
             }
-            ProcessResult result = APP.Database.Login(Username, Userpassword);
+            ProcessResult result = APP.Database.login(Username, Userpassword);
             if (!result.getResult()) {
                 dialog.setMessageTitleAndShow("Girdiğiniz Bilgiler Yanlış  Lütfen Tekrar Giriniz.", "Uyarı");
             } else {

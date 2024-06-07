@@ -8,13 +8,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.stream.Collectors;
 
 public class OracleDatabaseHelper {
 
@@ -26,16 +27,15 @@ public class OracleDatabaseHelper {
 
     }
 
-    private static Connection getConnection() throws ExecutionException, InterruptedException {
+    private static Connection getConnection()  {
         if (connectionFuture == null || connectionFuture.isDone() || connectionFuture.isCancelled()) {
-            connectionFuture = executorService.submit(new Callable<Connection>() {
-                @Override
-                public Connection call() throws Exception {
-                    return createDatabaseConnection();
-                }
-            });
+            connectionFuture = executorService.submit(OracleDatabaseHelper::createDatabaseConnection);
         }
-        return connectionFuture.get();
+        try {
+            return connectionFuture.get();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     private static Connection createDatabaseConnection() {
@@ -67,6 +67,30 @@ public class OracleDatabaseHelper {
             return new CreateUser().execute(name, password, email, playerName).get();
         } catch (ExecutionException | InterruptedException e) {
             return new ProcessResult(false, "Kayıt işlemi Başarısız");
+        }
+    }
+
+    public ProcessResult getTests() {
+        try {
+            return new GetTests().execute().get();
+        } catch (ExecutionException | InterruptedException e) {
+            return new ProcessResult(false, "Test Çekme işlemi Başarısız");
+        }
+    }
+
+    public ProcessResult login(String name, String password) {
+        try {
+            return new LoginCheck().execute(name, password).get();
+        } catch (Exception e) {
+            return new ProcessResult(false, "Giriş İşlemi Başarısız");
+        }
+    }
+
+    public ProcessResult getQuestions() {
+        try {
+            return new GetQuestions().execute().get();
+        } catch (ExecutionException | InterruptedException e) {
+            return new ProcessResult(false, "Veri çekme işlemi başarısız");
         }
     }
 
@@ -162,14 +186,45 @@ public class OracleDatabaseHelper {
         }
     }
 
-    public ProcessResult Login(String name, String password) {
+    public static class GetTests extends AsyncTask<Void, Void, ProcessResult> {
 
-        try {
-            return new LoginCheck().execute(name, password).get();
-        } catch (Exception e) {
-            return new ProcessResult(false, "Giriş İşlemi Başarısız");
+        Connection connection1;
+
+        @Override
+        protected ProcessResult doInBackground(Void... voids) {
+            try {
+                List<Test> testList = new ArrayList<>();
+
+                connection1 = getConnection();
+                if (connection1 == null) {
+                    return new ProcessResult(false, "İnternet Bağlantınızı Kontrol edin");
+                }
+
+
+                String sql4 = "SELECT * FROM TEST ";
+                PreparedStatement statement = connection1.prepareStatement(sql4);
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    Test test = new Test();
+
+                    test.setId(resultSet.getInt("ID"));
+                    test.setName(resultSet.getString("NAME"));
+                    testList.add(test);
+                }
+                APP.TestList = testList;
+            } catch (Exception e) {
+                return new ProcessResult(false, "Test Çekme Başarısız");
+            }
+            return new ProcessResult(false, "Test Çekme Başarılı");
+        }
+
+        @Override
+        protected void onPostExecute(ProcessResult result) {
+            super.onPostExecute(result);
         }
     }
+
 
     public static class LoginCheck extends AsyncTask<String, Void, ProcessResult> {
         Connection connection2;
@@ -209,66 +264,75 @@ public class OracleDatabaseHelper {
         }
     }
 
-    public ProcessResult fetchEnglishWordData() {
-        String query = "SELECT * FROM ENGLISH_WORD ORDER BY DBMS_RANDOM.RANDOM FETCH FIRST 1 ROWS ONLY";
-        try {
-            Questions questions = new FetchEnglishWordData().execute(query).get().getQuestion();
-            return new ProcessResult(true,"Veri çekme işlemi başarılı", questions);
-        } catch (ExecutionException | InterruptedException e) {
-            return new ProcessResult(false, "Veri çekme işlemi başarısız");
-        }
-    }
-
-    public static class FetchEnglishWordData extends AsyncTask<String, Void, ProcessResult> {
+    public static class GetQuestions extends AsyncTask<Void, Void, ProcessResult> {
         Connection connection3;
 
         @Override
-        protected ProcessResult doInBackground(String... params) {
+        protected ProcessResult doInBackground(Void... params) {
             StringBuilder result = new StringBuilder();
             try {
-                String query = params[0];
+                List<Integer> testIdList = APP.TestList.stream().map(obj -> new Integer(obj.getId())).collect(Collectors.toList());
 
                 connection3 = getConnection();
                 if (connection3 == null) {
                     return new ProcessResult(false, "İnternet Bağlantınızı Kontrol edin");
                 }
 
-                Statement stmt = connection3.createStatement();
-                ResultSet rs = stmt.executeQuery(query);
+                for (Integer testId : testIdList) {
+                    List<Question> questionList = new ArrayList<>();
 
-                int wordId = -1;
-                if (rs.next()) {
-                    wordId = rs.getInt("ID");
-                    String word = rs.getString("NAME");
-                    result.append(word).append("\n");
-                }
+                    String query = "SELECT q.ENGLISH_WORD_ID, q.POINT, q.CLUE, " +
+                            "a1.NAME AS ANSWER_NAME_1, a2.NAME AS ANSWER_NAME_2, " +
+                            "a3.NAME AS ANSWER_NAME_3, a4.NAME AS ANSWER_NAME_4, " +
+                            "a1.ID AS ANSWER_ID_1, a2.ID AS ANSWER_ID_2, " +
+                            "a3.ID AS ANSWER_ID_3, a4.ID AS ANSWER_ID_4, " +
+                            "ac.NAME AS CORRECT_ANSWER_NAME, ac.ID AS CORRECT_ANSWER_ID " +
+                            "FROM QUESTION q " +
+                            "JOIN ANSWER a1 ON q.ANSWER_ID_1 = a1.id " +
+                            "JOIN ANSWER a2 ON q.ANSWER_ID_2 = a2.id " +
+                            "JOIN ANSWER a3 ON q.ANSWER_ID_3 = a3.id " +
+                            "JOIN ANSWER a4 ON q.ANSWER_ID_4 = a4.id " +
+                            "JOIN ANSWER ac ON q.CORRECT_ANSWER_ID = ac.id " +
+                            "WHERE q.TEST_ID = ?";
 
-                rs.close();
-                stmt.close();
+                    PreparedStatement stmt = connection3.prepareStatement(query);
+                    stmt.setInt(1, testId);
+                    ResultSet rs = stmt.executeQuery();
+                    System.out.println("Sorgu Yürütüldü");
 
 
-                if (wordId != -1) {
-                    Questions question = fetchQuestionByWordId(wordId);
-                    if (question != null) {
-                        result.append("QUESTION: ").append(question.getId()).append("\n");
-                        return new ProcessResult(true, "Başarılı");
-                    } else {
-                        return new ProcessResult(false, "İlgili soru bulunamadı.");
+                    while (rs.next()) {
+                        Question question = new Question();
+                        question.setAnswer_1(new Answer(rs.getInt("ANSWER_ID_1"),rs.getString("ANSWER_NAME_1")));
+                        question.setAnswer_2(new Answer(rs.getInt("ANSWER_ID_2"),rs.getString("ANSWER_NAME_2")));
+                        question.setAnswer_3(new Answer(rs.getInt("ANSWER_ID_3"),rs.getString("ANSWER_NAME_3")));
+                        question.setAnswer_4(new Answer(rs.getInt("ANSWER_ID_4"),rs.getString("ANSWER_NAME_4")));
+                        question.setCorrectAnswer(new Answer(rs.getInt("CORRECT_ANSWER_ID"),rs.getString("CORRECT_ANSWER_NAME")));
+                        question.setPoint(rs.getInt("POINT"));
+                        question.setClue(rs.getString("CLUE"));
+
+                        questionList.add(question);
                     }
-                } else {
-                    return new ProcessResult(false, "Kelime bulunamadı.");
+
+                    if (questionList.isEmpty())
+                        continue;
+
+                    for (Test test: APP.TestList) {
+                        if(test.getId() == testId) {
+                            test.setQuestionList(questionList);
+                        }
+                    }
+
+                    rs.close();
+                    stmt.close();
                 }
+
+                connection3.close();
+
             } catch (Exception e) {
-                return new ProcessResult(false, "Veri çekme işlemi başarısız: " + e.getMessage());
-            } finally {
-                try {
-                    if (connection3 != null && !connection3.isClosed()) {
-                        connection3.close();
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                return new ProcessResult(false, "Soru Çekme işlemi başarısız: " + e.getMessage());
             }
+            return new ProcessResult(false, "Soru Çekme işlemi Başarılı: ");
         }
 
         @Override
@@ -276,68 +340,7 @@ public class OracleDatabaseHelper {
             super.onPostExecute(result);
         }
 
-
-        public Questions fetchQuestionByWordId(int wordId) {
-            Questions question = null;
-
-
-            try {
-                Connection connection4 = getConnection();
-                if (connection4 == null) {
-                    Log.e("Hata", "Veritabanı Bağlantısı Oluşturulmadı.");
-                }
-
-                String query = "SELECT q.ENGLISH_WORD_ID, q.POINT, q.CLUE, " +
-                        "a1.NAME AS ANSWER_ID_1, a2.NAME AS ANSWER_ID_2, " +
-                        "a3.NAME AS ANSWER_ID_3, a4.NAME AS ANSWER_ID_4, " +
-                        "ac.NAME AS CORRECT_ANSWER_ID " +
-                        "FROM QUESTION q " +
-                        "JOIN ANSWER a1 ON q.ANSWER_ID_1 = a1.id " +
-                        "JOIN ANSWER a2 ON q.ANSWER_ID_2 = a2.id " +
-                        "JOIN ANSWER a3 ON q.ANSWER_ID_3 = a3.id " +
-                        "JOIN ANSWER a4 ON q.ANSWER_ID_4 = a4.id " +
-                        "JOIN ANSWER ac ON q.CORRECT_ANSWER_ID = ac.id " +
-                        "WHERE q.ENGLISH_WORD_ID = ?";
-
-                PreparedStatement stmt = connection4.prepareStatement(query);
-                stmt.setInt(1, wordId);
-                ResultSet rs = stmt.executeQuery();
-                System.out.println("Sorgu Yürütüldü");
-
-
-                if (rs.next()) {
-
-
-                    System.out.println("Veri Bulundu");
-
-
-
-                    String optionA = rs.getString("ANSWER_ID_1");
-                    String optionB = rs.getString("ANSWER_ID_2");
-                    String optionC = rs.getString("ANSWER_ID_3");
-                    String optionD = rs.getString("ANSWER_ID_4");
-                    String correctOption = rs.getString("CORRECT_ANSWER_ID");
-                    int points = rs.getInt("POINT");
-                    String hint = rs.getString("CLUE");
-
-
-                    question = new Questions(wordId,optionA, optionB, optionC, optionD, correctOption, points, hint);
-                } else {
-                    System.out.println("Sonuç Bulunmadı");
-                }
-
-                rs.close();
-                stmt.close();
-                connection4.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("SQL Error: " + e.getMessage());
-            }
-            return question;
-        }
     }
-
-
 }
 
 
