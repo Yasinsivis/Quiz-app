@@ -286,12 +286,14 @@ public class OracleDatabaseHelper {
                             "a1.ID AS ANSWER_ID_1, a2.ID AS ANSWER_ID_2, " +
                             "a3.ID AS ANSWER_ID_3, a4.ID AS ANSWER_ID_4, " +
                             "ac.NAME AS CORRECT_ANSWER_NAME, ac.ID AS CORRECT_ANSWER_ID " +
+                            "ew.NAME AS ENGLISH_WORD_NAME, ew.ID AS ENGLISH_WORD_ID " +
                             "FROM QUESTION q " +
-                            "JOIN ANSWER a1 ON q.ANSWER_ID_1 = a1.id " +
-                            "JOIN ANSWER a2 ON q.ANSWER_ID_2 = a2.id " +
-                            "JOIN ANSWER a3 ON q.ANSWER_ID_3 = a3.id " +
-                            "JOIN ANSWER a4 ON q.ANSWER_ID_4 = a4.id " +
-                            "JOIN ANSWER ac ON q.CORRECT_ANSWER_ID = ac.id " +
+                            "JOIN ANSWER a1 ON q.ANSWER_ID_1 = a1.ID " +
+                            "JOIN ANSWER a2 ON q.ANSWER_ID_2 = a2.ID " +
+                            "JOIN ANSWER a3 ON q.ANSWER_ID_3 = a3.ID " +
+                            "JOIN ANSWER a4 ON q.ANSWER_ID_4 = a4.ID " +
+                            "JOIN ANSWER ac ON q.CORRECT_ANSWER_ID = ac.ID " +
+                            "JOIN ENGLISH_WORD ew ON q.ENGLISH_WORD_ID = ew.ID " +
                             "WHERE q.TEST_ID = ?";
 
                     PreparedStatement stmt = connection3.prepareStatement(query);
@@ -305,6 +307,7 @@ public class OracleDatabaseHelper {
                         question.setAnswer_3(new Answer(rs.getInt("ANSWER_ID_3"),rs.getString("ANSWER_NAME_3")));
                         question.setAnswer_4(new Answer(rs.getInt("ANSWER_ID_4"),rs.getString("ANSWER_NAME_4")));
                         question.setCorrectAnswer(new Answer(rs.getInt("CORRECT_ANSWER_ID"),rs.getString("CORRECT_ANSWER_NAME")));
+                        question.setEnglishWord(new EnglishWord(rs.getInt("ENGLISH_WORD_ID"),rs.getString("ENGLISH_WORD_NAME")));
                         question.setPoint(rs.getInt("POINT"));
                         question.setClue(rs.getString("CLUE"));
 

@@ -8,6 +8,8 @@ public class Question {
     private Answer answer_3;
     private Answer answer_4;
     private Answer correctAnswer;
+
+    private EnglishWord englishWord;
     private int point;
     private String clue;
 
@@ -15,13 +17,14 @@ public class Question {
     public Question() {
     }
 
-    public Question(int id, Answer answer_1, Answer answer_2, Answer answer_3, Answer answer_4, Answer correctAnswer, int point, String clue) {
+    public Question(int id, Answer answer_1, Answer answer_2, Answer answer_3, Answer answer_4, Answer correctAnswer, EnglishWord englishWord, int point, String clue) {
         this.id = id;
         this.answer_1 = answer_1;
         this.answer_2 = answer_2;
         this.answer_3 = answer_3;
         this.answer_4 = answer_4;
         this.correctAnswer = correctAnswer;
+        this.englishWord = englishWord;
         this.point = point;
         this.clue = clue;
     }
@@ -88,5 +91,13 @@ public class Question {
 
     public void setClue(String clue) {
         this.clue = clue;
+    }
+
+    public EnglishWord getEnglishWord() {
+        return englishWord;
+    }
+
+    public void setEnglishWord(EnglishWord englishWord) {
+        this.englishWord = englishWord;
     }
 }
