@@ -285,7 +285,7 @@ public class OracleDatabaseHelper {
                             "a3.NAME AS ANSWER_NAME_3, a4.NAME AS ANSWER_NAME_4, " +
                             "a1.ID AS ANSWER_ID_1, a2.ID AS ANSWER_ID_2, " +
                             "a3.ID AS ANSWER_ID_3, a4.ID AS ANSWER_ID_4, " +
-                            "ac.NAME AS CORRECT_ANSWER_NAME, ac.ID AS CORRECT_ANSWER_ID " +
+                            "ac.NAME AS CORRECT_ANSWER_NAME, ac.ID AS CORRECT_ANSWER_ID," +
                             "ew.NAME AS ENGLISH_WORD_NAME, ew.ID AS ENGLISH_WORD_ID " +
                             "FROM QUESTION q " +
                             "JOIN ANSWER a1 ON q.ANSWER_ID_1 = a1.ID " +

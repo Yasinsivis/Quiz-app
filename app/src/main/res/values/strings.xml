@@ -9,5 +9,24 @@
     <string name="E_mail">E-posta Giriniz:</string>
     <string name="tamamla">Tamamla</string>
     <string name="Play">Play</string>
+    <string name="DOG">DOG</string>
+    <string name="CAT">CAT</string>
+    <string name="BIRD">BIRD</string>
+    <string name="WOLF">WOLF</string>
+    <string name="PARROT">PARROT</string>
+    <string name="DUCK">DUCK</string>
+    <string name="SQUIRREL">SQUIRREL</string>
+    <string name="BULL">BULL</string>
+    <string name="DOLPHIN">DOLPHIN</string>
+    <string name="BEAR">BEAR</string>
+    <string name="PIG">PIG</string>
+    <string name="LION">LION</string>
+    <string name="TIGER">TIGER</string>
+    <string name="BUG">BUG</string>
+    <string name="TURTLE">TURTLE</string>
+
+
+
+
 
 </resources>

@@ -1,76 +1,294 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/BackGround"
-    android:orientation="vertical"
     tools:context=".HomeActivity">
 
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:padding="15dp"
-      android:orientation="vertical">
-      <ImageView
-          android:backgroundTint="@color/DialogBtn"
-          android:layout_marginTop="40dp"
-          android:layout_width="60dp"
-          android:layout_height="60dp"
-          android:layout_gravity="left"
-          android:background="@drawable/icon_cornes"
-          android:src="@drawable/profile_icon"
-          android:scaleType="fitCenter"/>
+    <ImageView
+        android:id="@+id/profile_icon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/icon_cornes"
+        android:backgroundTint="@color/DialogBtn"
+        android:scaleType="fitCenter"
+        android:src="@drawable/profile_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        />
 
-      <ImageView
-          android:layout_width="60dp"
-          android:layout_height="60dp"
-          android:layout_marginTop="-60dp"
-          android:layout_gravity="right"
-          android:background="@drawable/icon_cornes"
-          android:backgroundTint="@color/DialogBtn"
-          android:scaleType="fitCenter"
-          android:src="@drawable/settings" />
-  </LinearLayout>
+    <ImageView
+        android:id="@+id/settings_icon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/icon_cornes"
+        android:backgroundTint="@color/DialogBtn"
+        android:scaleType="fitCenter"
+        android:src="@drawable/settings"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="30dp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp"
-       android:paddingBottom="20dp"
-        >
-        <TextView
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/profile_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:enabled="false"
-            android:fontFamily="@font/bangers"
-            android:soundEffectsEnabled="true"
-            android:layout_marginTop="10dp"
-            android:text="@string/app_name_2"
-            android:textAlignment="center"
-            android:textColor="@color/BackGround2"
-            android:textSize="80sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/PlayBTN"
-            android:onClick="PlayBTN"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="2dp"
-            android:backgroundTint="@color/BackGround2"
-            android:text="@string/Play"
-            android:textColor="@color/BackGround"
-            android:textSize="18sp" />
+            android:orientation="vertical"
+            android:padding="16dp"
 
-    </LinearLayout>
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name_2"
+                android:textColor="@color/BackGround2"
+                android:fontFamily="@font/bangers"
+                android:textSize="80sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:paddingBottom="16dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/DOG"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/BackGround2"
+                    android:text="@string/DOG"
+                    android:textColor="@color/BackGround"
+                    android:onClick="PlayBTN"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/CAT"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/BackGround2"
+                    android:text="@string/CAT"
+                    android:textColor="@color/BackGround"
+                    android:onClick="PlayBTN"
+                    android:textSize="18sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/DUCK"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/BackGround2"
+                    android:text="@string/DUCK"
+                    android:textColor="@color/BackGround"
+                    android:onClick="PlayBTN"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/BUG"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/BackGround2"
+                    android:text="@string/BUG"
+                    android:textColor="@color/BackGround"
+                    android:onClick="PlayBTN"
+                    android:textSize="18sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/BIRD"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/BackGround2"
+                    android:text="@string/BIRD"
+                    android:textColor="@color/BackGround"
+                    android:onClick="PlayBTN"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/TURTLE"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/BackGround2"
+                    android:text="@string/TURTLE"
+                    android:textColor="@color/BackGround"
+                    android:onClick="PlayBTN"
+                    android:textSize="18sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/PARROT"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/BackGround2"
+                    android:text="@string/PARROT"
+                    android:textColor="@color/BackGround"
+                    android:onClick="PlayBTN"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/SQUIRREL"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/BackGround2"
+                    android:text="@string/SQUIRREL"
+                    android:textColor="@color/BackGround"
+                    android:onClick="PlayBTN"
+                    android:textSize="18sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/BULL"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/BackGround2"
+                    android:text="@string/BULL"
+                    android:textColor="@color/BackGround"
+                    android:onClick="PlayBTN"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/PIG"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/BackGround2"
+                    android:text="@string/PIG"
+                    android:textColor="@color/BackGround"
+                    android:onClick="PlayBTN"
+                    android:textSize="18sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/TIGER"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/BackGround2"
+                    android:text="@string/TIGER"
+                    android:textColor="@color/BackGround"
+                    android:onClick="PlayBTN"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/LION"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/BackGround2"
+                    android:text="@string/LION"
+                    android:textColor="@color/BackGround"
+                    android:onClick="PlayBTN"
+                    android:textSize="18sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/DOLPHIN"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/BackGround2"
+                    android:text="@string/DOLPHIN"
+                    android:textColor="@color/BackGround"
+                    android:onClick="PlayBTN"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/WOLF"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/BackGround2"
+                    android:text="@string/WOLF"
+                    android:textColor="@color/BackGround"
+                    android:onClick="PlayBTN"
+                    android:textSize="18sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="60dp"
+                android:paddingRight="60dp"
+                >
+
+                <Button
+                    android:id="@+id/BEAR"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/BackGround2"
+                    android:text="@string/BEAR"
+                    android:textColor="@color/BackGround"
+                    android:onClick="PlayBTN"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
 
-</LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

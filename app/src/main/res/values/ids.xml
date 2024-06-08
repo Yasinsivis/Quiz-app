@@ -13,4 +13,5 @@
     <item name="SubmitBtn" type="id" />
     <item name="Point" type="id" />
     <item name="Hint" type="id" />
+    <item name="baslik" type="id" />
 </resources>
