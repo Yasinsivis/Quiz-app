@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
+
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -41,7 +41,7 @@ public class OracleDatabaseHelper {
     private static Connection createDatabaseConnection() {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@//192.168.1.201:1521/XEPDB1", "YASINS", "yasin1234.");
+            Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@//192.168.1.204:1521/XEPDB1", "YASINS", "yasin1234.");
             Log.e("Başarılı", "Veritabanına Bağlantı Kuruldu");
             return connection;
         } catch (Exception e) {
