@@ -7,4 +7,9 @@
     <color name="DialogBtn">#F67828</color>
     <color name="Transparent">#00000000</color>
     <color name="Opac_Transparent">#99000000</color>
+    <color name="custom_switch_thumb_color">#FF4081</color> <!-- Düğme başlığı rengi -->
+    <color name="custom_switch_track_color">#EEEEEE</color> <!-- İzleme çizgisi rengi -->
+    <color name="custom_switch_track_stroke_color">#BDBDBD</color> <!-- İzleme çizgisi kenarlık rengi -->
+
+
 </resources>

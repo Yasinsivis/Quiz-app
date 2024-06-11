@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="20dp" /> <!-- Opsiyonel: Köşe yarıçapı -->
+    <size android:width="50dp" android:height="30dp" /> <!-- Opsiyonel: Boyutlar -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/BackGround" /> <!-- Opsiyonel: Kenarlık rengi ve kalınlığı -->
+    <solid android:color="@color/BackGround2" />  <!-- Açık durumda gösterilecek renk -->
+</shape>

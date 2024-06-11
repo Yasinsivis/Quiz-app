@@ -7,11 +7,7 @@ import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 
 public class HomeActivity extends AppCompatActivity {
     Button btnDOG;
@@ -69,7 +65,7 @@ public class HomeActivity extends AppCompatActivity {
         btnDOLPHIN.setTag(12);
         btnWOLF.setTag(13);
         btnBEAR.setTag(14);
-    };
+    }
     public void PlayBTN (View view){
 
         int testId=(int) view.getTag();
@@ -77,6 +73,10 @@ public class HomeActivity extends AppCompatActivity {
         intent.putExtra("Index", testId);
         startActivity(intent);
       
+    }
+    public void Settings (View view){
+        Intent settingsIntent = new Intent(HomeActivity.this , SettingsActivity.class);
+        startActivity(settingsIntent);
     }
 
 }

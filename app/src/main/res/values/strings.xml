@@ -24,9 +24,10 @@
     <string name="TIGER">TIGER</string>
     <string name="BUG">BUG</string>
     <string name="TURTLE">TURTLE</string>
-
-
-
-
+    <string name="Music">MUSİC</string>
+    <string name="Notiflication">Notifilacion</string>
+    <string name="SaveAndExit">Save And Exit</string>
 
 </resources>
+
+

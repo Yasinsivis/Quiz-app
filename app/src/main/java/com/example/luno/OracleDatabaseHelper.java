@@ -41,7 +41,7 @@ public class OracleDatabaseHelper {
     private static Connection createDatabaseConnection() {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@//192.168.1.204:1521/XEPDB1", "YASINS", "yasin1234.");
+            Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@//192.168.1.203:1521/XEPDB1", "YASINS", "yasin1234.");
             Log.e("Başarılı", "Veritabanına Bağlantı Kuruldu");
             return connection;
         } catch (Exception e) {
