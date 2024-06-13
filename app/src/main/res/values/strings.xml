@@ -27,6 +27,8 @@
     <string name="Music">MUSİC</string>
     <string name="Notiflication">Notifilacion</string>
     <string name="SaveAndExit">Save And Exit</string>
+    <string name="ScoreBaslik">Score Table</string>
+    <string name="Exit">Back</string>
 
 </resources>
 

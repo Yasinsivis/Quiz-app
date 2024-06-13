@@ -78,5 +78,16 @@ public class HomeActivity extends AppCompatActivity {
         Intent settingsIntent = new Intent(HomeActivity.this , SettingsActivity.class);
         startActivity(settingsIntent);
     }
+    public void Score(View view){
+        Intent ScoreIntent = new Intent(HomeActivity.this, ScoreActivity.class);
+        startActivity(ScoreIntent);
+    }
 
+    public void Profile(View view){
+        showProfileDialog();
+    }
+    private void showProfileDialog() {
+        ProfileDialogFragment dialogFragment = new ProfileDialogFragment();
+        dialogFragment.show(getSupportFragmentManager(), "ProfileDialogFragment");
+    }
 }

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/score_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BackGround2"
+    android:padding="10dp"
+    tools:context=".ScoreActivity">
+    <TextView
+        android:id="@+id/app_name_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bangers"
+        android:gravity="center"
+        android:paddingBottom="16dp"
+        android:text="@string/app_name_2"
+        android:textColor="@color/BackGround"
+        android:textSize="80sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+    <LinearLayout
+        android:id="@+id/ScoreTable"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_bg"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_name_text"
+        tools:ignore="MissingConstraints">
+        <TextView
+
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:text="@string/ScoreBaslik"
+            android:textAlignment="center"
+            android:textColor="@color/BackGround2"
+            android:fontFamily="@font/bangers"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            />
+        <EditText
+            android:id="@+id/topPlayer1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="23dp"
+            android:padding="10dp"
+            android:inputType="text"
+            android:background="@drawable/shape_border_and_background_login"
+            android:enabled="false"
+            android:textColor="@color/Score_text_color"
+            android:textStyle="bold"
+            />
+        <EditText
+            android:id="@+id/topPlayer2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="23dp"
+            android:padding="10dp"
+            android:inputType="text"
+            android:background="@drawable/shape_border_and_background_login"
+            android:enabled="false"
+            android:textColor="@color/Score_text_color"
+            android:textStyle="bold"
+            />
+        <EditText
+            android:id="@+id/topPlayer3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="23dp"
+            android:padding="10dp"
+            android:inputType="text"
+            android:background="@drawable/shape_border_and_background_login"
+            android:enabled="false"
+            android:textColor="@color/Score_text_color"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+            />
+
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="196dp"
+        android:backgroundTint="@color/BackGround"
+        android:text="@string/Exit"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/BackGround2"
+        android:onClick="Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

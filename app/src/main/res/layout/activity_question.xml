@@ -22,6 +22,7 @@
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/BackGround2"
             android:onClick="ExitButton"
+            android:textColor="@color/black"
             android:text="X" />
 
         <EditText

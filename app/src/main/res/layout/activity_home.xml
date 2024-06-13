@@ -9,6 +9,20 @@
     tools:context=".HomeActivity">
 
     <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/icon_cornes"
+        android:backgroundTint="@color/DialogBtn"
+        android:onClick="Score"
+        android:padding="2dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/score_table_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
         android:id="@+id/profile_icon"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -20,6 +34,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"
         android:layout_marginTop="30dp"
+        android:onClick="Profile"
         />
 
     <ImageView

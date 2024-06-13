@@ -50,18 +50,6 @@ public class OracleDatabaseHelper {
 
         }
     }
-
-   /* private static boolean isConnectionValid() {
-        if (connection == null)
-            return false;
-        try {
-            return !connection.isClosed();
-        } catch (SQLException e) {
-            return false;
-        }
-    }*/
-
-
     public ProcessResult createUser(String name, String password, String email, String playerName) {
         try {
             return new CreateUser().execute(name, password, email, playerName).get();
@@ -85,6 +73,13 @@ public class OracleDatabaseHelper {
             return new ProcessResult(false, "Giriş İşlemi Başarısız");
         }
     }
+    public ProcessResult playerAddPoint(Integer point , Integer userID){
+        try {
+            return new PlayerAddPoint().execute(point , userID).get();
+        } catch (Exception e) {
+            return new ProcessResult(false, "Kayıt İşlemi Başarısız");
+        }
+    }
 
     public ProcessResult getQuestions() {
         try {
@@ -93,7 +88,57 @@ public class OracleDatabaseHelper {
             return new ProcessResult(false, "Veri çekme işlemi başarısız");
         }
     }
+    public ProcessResult getTopThreePlayers() {
+        try {
+            return new GetTopThreePlayers().execute().get();
+        } catch (ExecutionException | InterruptedException e) {
+            return new ProcessResult(false, "Veri çekme işlemi başarısız");
+        }
+    }
 
+
+
+    public static class GetTopThreePlayers extends AsyncTask<Void, Void, ProcessResult> {
+        Connection connection;
+
+        @Override
+        protected ProcessResult doInBackground(Void... voids) {
+            try {
+                List<Player> topPlayers = new ArrayList<>();
+                connection = getConnection();
+
+                if (connection == null) {
+                    return new ProcessResult(false, "İnternet Bağlantınızı Kontrol edin");
+                }
+
+                String query = "SELECT NAME, SCORE FROM PLAYER ORDER BY SCORE DESC FETCH FIRST 3 ROWS ONLY";
+                PreparedStatement statement = connection.prepareStatement(query);
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    String name = resultSet.getString("NAME");
+                    int score = resultSet.getInt("SCORE");
+                    topPlayers.add(new Player(name, score));
+                }
+
+                // Store top players in a static variable or pass it back through ProcessResult
+                APP.TopPlayersList = topPlayers;
+
+                resultSet.close();
+                statement.close();
+
+            } catch (Exception e) {
+                return new ProcessResult(false, "Veri çekme işlemi başarısız: " + e.getMessage());
+            }
+
+            return new ProcessResult(true, "Veri çekme işlemi başarılı");
+        }
+
+        @Override
+        protected void onPostExecute(ProcessResult result) {
+            super.onPostExecute(result);
+        }
+    }
     public static class CreateUser extends AsyncTask<String, Void, ProcessResult> {
 
         Connection connection1;
@@ -185,6 +230,44 @@ public class OracleDatabaseHelper {
             super.onPostExecute(result);
         }
     }
+    public static class PlayerAddPoint extends AsyncTask<Integer, Void, ProcessResult> {
+
+        Connection connection1;
+
+        @Override
+        protected ProcessResult doInBackground(Integer... params) {
+
+
+            try {
+
+                int point = params[0];
+                int userID = params[1];
+
+                connection1 = getConnection();
+
+                if (connection1 == null) {
+                    return new ProcessResult(false, "İnternet Bağlantınızı Kontrol edin");
+                }
+
+                String sql3 = "UPDATE PLAYER SET SCORE = SCORE + ? WHERE USER_ID = ?";
+                PreparedStatement preparedStatement3 = connection1.prepareStatement(sql3);
+                preparedStatement3.setInt(1,point);
+                preparedStatement3.setInt(2,userID);
+
+                int affectedRows2 = preparedStatement3.executeUpdate();
+                preparedStatement3.close();
+
+            } catch (Exception e) {
+                return new ProcessResult(false, "Puan Kaydedilemedi");
+            }
+            return new ProcessResult(false, "Puan Başarılı Bir şekilde Kaydedildi.");
+        }
+
+        @Override
+        protected void onPostExecute(ProcessResult result) {
+            super.onPostExecute(result);
+        }
+    }
 
     public static class GetTests extends AsyncTask<Void, Void, ProcessResult> {
 
@@ -230,6 +313,7 @@ public class OracleDatabaseHelper {
 
         @Override
         protected ProcessResult doInBackground(String... params) {
+            int userId = 0;
             try {
 
                 String Username = params[0];
@@ -248,13 +332,24 @@ public class OracleDatabaseHelper {
                 statement.setString(2, Password);
                 ResultSet resultSet = statement.executeQuery();
                 if (resultSet.next() && resultSet.getInt(1) > 0) {
-                    return new ProcessResult(true, "Giriş Başarılı");
+                    String sql1="SELECT ID FROM LUNO_USER WHERE NAME = ? AND PASSWORD = ?";
+                    PreparedStatement statement1 = connection2.prepareStatement(sql1);
+                    statement1.setString(1,Username);
+                    statement1.setString(2,Password);
+                    ResultSet resultSet1 = statement1.executeQuery();
+                    if (resultSet1.next()){
+                        userId = resultSet1.getInt("ID");
+                        UserSession.setUserID(userId);
+                        return new ProcessResult(true, "Giriş Başarılı");
+                    }
+
                 } else {
                     return new ProcessResult(false, "Giriş Başarısız");
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+            return  new ProcessResult(false,"Giriş Başarısız");
         }
 
         @Override

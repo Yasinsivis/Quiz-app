@@ -14,7 +14,7 @@ public class APP extends Application {
     public static OracleDatabaseHelper Database;
 
     public static List<Test> TestList;
-
+    public static List<Player> TopPlayersList = new ArrayList<>();
     public void onCreate() {
         super.onCreate();
         Context = getApplicationContext();
